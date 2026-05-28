@@ -1,1 +1,2957 @@
-# Designthinking-web
+[DT_STUDY_HUB.html](https://github.com/user-attachments/files/28340268/DT_STUDY_HUB.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Thinking · Study Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+  :root {
+    color-scheme: light;
+    --bg: #fff7ed;
+    --bg-2: #ffedd5;
+    --surface: #ffffff;
+    --surface-2: #fff7ed;
+    --ink: #1a0f08;
+    --ink-soft: #57534e;
+    --ink-light: #a8a29e;
+    --border: #fed7aa;
+    --border-soft: #fef3ec;
+    --orange: #ea580c;
+    --orange-soft: #ffedd5;
+    --orange-dark: #9a3412;
+    --orange-light: #fb923c;
+    --coral: #f43f5e;
+    --coral-soft: #ffe4e6;
+    --teal: #0891b2;
+    --teal-soft: #cffafe;
+    --purple: #7c3aed;
+    --purple-soft: #ede9fe;
+    --green: #15803d;
+    --green-soft: #dcfce7;
+    --yellow: #ca8a04;
+    --yellow-soft: #fef3c7;
+    --navy: #1e3a5f;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; letter-spacing: -0.01em; }
+  button { font-family: inherit; }
+
+  /* ============== LAYOUT ============== */
+  .app { display: grid; grid-template-columns: 270px 1fr; min-height: 100vh; }
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 22px 18px;
+    position: sticky; top: 0;
+    height: 100vh; overflow-y: auto;
+  }
+  .main { padding: 36px 48px 80px; max-width: 980px; }
+
+  /* ============== SIDEBAR ============== */
+  .brand { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .brand-dot {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--orange-light), var(--orange));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: 16px;
+    font-family: 'Fraunces', serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(234,88,12,0.3);
+  }
+  .brand-title { font-weight: 700; font-size: 0.95rem; line-height: 1.2; color: var(--ink); }
+  .brand-sub { font-size: 0.72rem; color: var(--ink-light); margin-top: 2px; }
+
+  .progress-block {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 12px rgba(234,88,12,0.25);
+  }
+  .progress-block .label {
+    display: flex; justify-content: space-between;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.95);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 7px;
+  }
+  .progress-block .bar {
+    height: 6px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-block .bar-fill {
+    height: 100%;
+    background: white;
+    transition: width 0.3s;
+  }
+
+  .sidebar h4 {
+    margin: 16px 0 6px;
+    font-size: 0.65rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav { list-style: none; padding: 0; margin: 0; }
+  .nav li { margin: 1px 0; }
+  .nav-btn {
+    width: 100%; text-align: left;
+    background: none; border: none;
+    padding: 8px 10px;
+    border-radius: 7px;
+    color: var(--ink-soft);
+    font-size: 0.84rem;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .nav-btn:hover { background: var(--orange-soft); color: var(--ink); }
+  .nav-btn.active {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(234,88,12,0.25);
+  }
+  .nav-btn .label-wrap { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; }
+  .nav-btn .status-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+    background: var(--surface);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .nav-btn.active .status-dot { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.15); }
+  .nav-btn .status-dot.done { background: var(--green); border-color: var(--green); }
+  .nav-btn .status-dot.done::after { content: '✓'; color: white; font-size: 9px; font-weight: 700; }
+  .nav-btn .status-dot.review { background: var(--coral); border-color: var(--coral); }
+  .nav-btn .status-dot.review::after { content: '↻'; color: white; font-size: 9px; font-weight: 700; }
+  .nav-btn .priority {
+    font-size: 0.58rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .nav-btn .priority.critical { background: var(--coral-soft); color: var(--coral); }
+  .nav-btn .priority.high { background: var(--yellow-soft); color: var(--yellow); }
+  .nav-btn .priority.medium { background: var(--teal-soft); color: var(--teal); }
+  .nav-btn.active .priority { background: rgba(255,255,255,0.22); color: white; }
+
+  .exam-card {
+    margin-top: 18px;
+    background: var(--ink);
+    color: white;
+    border-radius: 10px;
+    padding: 13px 15px;
+    font-size: 0.78rem;
+  }
+  .exam-card .label {
+    font-size: 0.6rem;
+    color: var(--orange-light);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+  }
+  .exam-card strong { display: block; font-size: 0.95rem; font-family: 'Fraunces', serif; font-weight: 700; }
+  .exam-card .meta { color: rgba(255,255,255,0.7); margin-top: 4px; font-size: 0.72rem; }
+
+  /* ============== PANELS ============== */
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadein 0.2s ease-out; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ============== HOME / COVER ============== */
+  .hero {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 50%, #fbbf24 100%);
+    border-radius: 20px;
+    padding: 40px 44px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 40px rgba(234,88,12,0.3);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: 80px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-size: 2.6rem;
+    color: white;
+    line-height: 1.05;
+    margin: 0 0 12px;
+    font-weight: 800;
+  }
+  .hero p {
+    font-size: 1rem;
+    opacity: 0.95;
+    max-width: 540px;
+    margin: 0 0 20px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 11px 18px;
+    min-width: 110px;
+  }
+  .hero-stat strong {
+    display: block;
+    font-size: 1.7rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .hero-stat span { font-size: 0.74rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin: 30px 0 14px;
+    color: var(--ink);
+  }
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .qa-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .qa-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(234,88,12,0.12);
+    border-color: var(--orange);
+  }
+  .qa-card .qa-icon {
+    width: 44px; height: 44px;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .qa-card.flash .qa-icon { background: var(--purple-soft); color: var(--purple); }
+  .qa-card.quiz .qa-icon { background: var(--teal-soft); color: var(--teal); }
+  .qa-card.mock .qa-icon { background: var(--coral-soft); color: var(--coral); }
+  .qa-card.ai .qa-icon { background: var(--orange-soft); color: var(--orange); }
+  .qa-card h3 { font-size: 1rem; margin: 0 0 4px; color: var(--ink); }
+  .qa-card p { font-size: 0.82rem; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .topic-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .topic-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent-color, var(--orange));
+  }
+  .topic-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(234,88,12,0.12);
+  }
+  .topic-tile .tile-num {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    color: var(--accent-color, var(--orange));
+    margin-bottom: 5px;
+    margin-top: 4px;
+  }
+  .topic-tile h3 { font-size: 1.02rem; margin: 0 0 5px; line-height: 1.3; color: var(--ink); }
+  .topic-tile .tile-sub { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.45; }
+  .topic-tile .tile-status {
+    margin-top: 10px;
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .topic-tile .tile-status.done { color: var(--green); }
+  .topic-tile .tile-status.review { color: var(--coral); }
+
+  /* topic color accents */
+  .topic-tile.t1 { --accent-color: var(--orange); }
+  .topic-tile.t2 { --accent-color: var(--teal); }
+  .topic-tile.t3 { --accent-color: var(--coral); }
+  .topic-tile.t4 { --accent-color: var(--purple); }
+  .topic-tile.t5 { --accent-color: #f59e0b; }
+  .topic-tile.t6 { --accent-color: var(--coral); }
+  .topic-tile.t7 { --accent-color: var(--green); }
+  .topic-tile.t8 { --accent-color: var(--navy); }
+
+  .tip-banner {
+    background: var(--purple-soft);
+    border: 1px solid var(--purple);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.88rem;
+  }
+  .tip-banner .tip-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .tip-banner strong { color: var(--purple); }
+
+  /* ============== TOPIC PANELS ============== */
+  .panel-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 16px;
+    margin-bottom: 26px;
+  }
+  .panel-eyebrow {
+    color: var(--orange);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin-bottom: 5px;
+  }
+  .panel-title { font-size: 2rem; font-weight: 700; margin: 0 0 5px; line-height: 1.15; color: var(--ink); }
+  .panel-subtitle { color: var(--ink-soft); font-size: 0.95rem; margin: 0; }
+
+  .tabs {
+    display: flex; gap: 4px;
+    margin-bottom: 24px;
+    background: var(--surface);
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    width: fit-content;
+  }
+  .tab-btn {
+    background: none; border: none;
+    padding: 8px 18px;
+    cursor: pointer;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { color: var(--ink); background: var(--orange-soft); }
+  .tab-btn.active {
+    background: var(--orange);
+    color: white;
+    font-weight: 600;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadein 0.18s ease-out; }
+
+  h2 { font-size: 1.35rem; margin: 28px 0 10px; color: var(--ink); }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 1.05rem; margin: 22px 0 8px; }
+  p { margin: 9px 0; }
+  ul, ol { padding-left: 22px; margin: 9px 0; }
+  li { margin: 4px 0; font-size: 0.9rem; }
+  strong { font-weight: 700; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.87rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px 13px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  th {
+    background: var(--orange-soft);
+    color: var(--orange-dark);
+    font-weight: 700;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .callout {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin: 14px 0;
+    font-size: 0.87rem;
+    border-left: 4px solid;
+    line-height: 1.6;
+  }
+  .callout.key { background: var(--green-soft); border-color: var(--green); }
+  .callout.exam { background: var(--yellow-soft); border-color: var(--yellow); }
+  .callout.tip { background: var(--orange-soft); border-color: var(--orange); }
+
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .phase-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    transition: transform 0.15s;
+  }
+  .phase-card:hover { transform: translateY(-3px); }
+  .phase-card.div { border-color: var(--coral); background: var(--coral-soft); }
+  .phase-card.con { border-color: var(--teal); background: var(--teal-soft); }
+  .phase-card .num { display: block; font-weight: 800; font-size: 1.6rem; margin-bottom: 4px; font-family: 'Fraunces', serif; }
+  .phase-card.div .num { color: var(--coral); }
+  .phase-card.con .num { color: var(--teal); }
+  .phase-card .name { font-weight: 700; color: var(--ink); }
+  .phase-card .type {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.6rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 12px 0;
+  }
+  .toc ol { margin: 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; font-size: 0.92rem; }
+  .toc li::marker { color: var(--orange); font-weight: 700; }
+  .toc .toc-tag { font-size: 0.7rem; color: var(--ink-light); margin-left: 6px; }
+
+  .sum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .sum-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 15px;
+    border-top: 3px solid var(--orange);
+  }
+  .sum-card .sum-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .sum-card .sum-value { font-weight: 600; font-size: 0.9rem; }
+  .sum-card .sum-sub { color: var(--ink-soft); font-size: 0.78rem; margin-top: 2px; }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--orange-soft); border-color: var(--orange); }
+  .btn.primary {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    border-color: var(--orange);
+    box-shadow: 0 2px 8px rgba(234,88,12,0.25);
+  }
+  .btn.primary:hover { background: linear-gradient(135deg, var(--orange-dark), var(--orange)); }
+  .btn.success { background: var(--green); color: white; border-color: var(--green); }
+  .btn.danger { background: var(--coral); color: white; border-color: var(--coral); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ============== FLASHCARDS ============== */
+  .fc-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .fc-controls-left, .fc-controls-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fc-select {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .fc-select:focus { outline: none; border-color: var(--orange); }
+  .fc-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .fc-stats .stat strong { color: var(--ink); font-family: 'Fraunces', serif; }
+  .flashcard {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--orange-soft) 100%);
+    border: 2px solid var(--orange);
+    border-radius: 16px;
+    padding: 56px 36px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 28px rgba(234,88,12,0.12);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s;
+  }
+  .flashcard:hover { transform: translateY(-3px); }
+  .flashcard .fc-topic {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--orange-dark);
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding: 4px 12px;
+    background: var(--orange-soft);
+    border-radius: 20px;
+  }
+  .flashcard .fc-question {
+    font-size: 1.4rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    max-width: 620px;
+  }
+  .flashcard .fc-answer {
+    font-size: 0.95rem;
+    color: var(--ink);
+    max-width: 620px;
+    line-height: 1.7;
+    text-align: left;
+  }
+  .flashcard .fc-hint {
+    font-size: 0.7rem;
+    color: var(--ink-light);
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+  }
+  .fc-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .fc-counter { font-size: 0.9rem; color: var(--ink-soft); font-weight: 600; }
+  .fc-actions { display: flex; gap: 6px; }
+
+  /* ============== QUIZ ============== */
+  .quiz-intro, .mock-intro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 20px;
+  }
+  .quiz-intro p, .mock-intro-card p { margin: 8px 0; font-size: 0.92rem; }
+  .quiz-launchers {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .qcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+  }
+  .q-num { font-size: 0.7rem; color: var(--orange); font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 6px; }
+  .q-text { font-size: 0.96rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; color: var(--ink); }
+  .q-opts { display: flex; flex-direction: column; gap: 6px; }
+  .qopt {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 13px;
+    cursor: pointer;
+    font-size: 0.87rem;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .qopt:hover:not(:disabled) { border-color: var(--orange); background: var(--orange-soft); }
+  .qopt:disabled { cursor: default; }
+  .qopt.correct { background: var(--green-soft); border-color: var(--green); color: #14532d; font-weight: 600; }
+  .qopt.wrong { background: var(--coral-soft); border-color: var(--coral); color: #7f1d1d; }
+  .q-exp {
+    display: none;
+    margin-top: 12px;
+    background: var(--purple-soft);
+    border-left: 3px solid var(--purple);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .q-exp.show { display: block; animation: fadein 0.18s ease; }
+
+  .quiz-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 20px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .quiz-bar .score {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--orange);
+    font-family: 'Fraunces', serif;
+  }
+  .quiz-bar .score-lbl { font-size: 0.72rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
+  .quiz-bar .bar-track {
+    flex: 1;
+    min-width: 100px;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .quiz-bar .bar-fill {
+    height: 100%;
+    background: var(--green);
+    transition: width 0.3s, background 0.3s;
+  }
+
+  /* ============== MOCK EXAM ============== */
+  .mock-intro {
+    background: linear-gradient(135deg, var(--coral), var(--orange));
+    color: white;
+    border-radius: 16px;
+    padding: 32px 36px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(234,88,12,0.25);
+  }
+  .mock-intro h2 { color: white; margin: 0 0 8px; font-size: 1.6rem; font-weight: 700; }
+  .mock-intro p { color: rgba(255,255,255,0.95); font-size: 0.92rem; margin: 8px 0; }
+  .mock-intro .specs {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .mock-intro .spec {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+  .mock-intro .spec strong { display: block; font-size: 1.2rem; font-family: 'Fraunces', serif; font-weight: 700; margin-bottom: 2px; }
+  .mock-intro .btn { background: white; color: var(--orange-dark); border: none; padding: 11px 26px; font-size: 0.95rem; font-weight: 700; }
+  .mock-intro .btn:hover { background: var(--orange-soft); }
+
+  .timer-bar {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(234,88,12,0.08);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .timer-bar .time { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--orange); }
+  .timer-bar .time.warn { color: var(--yellow); }
+  .timer-bar .time.danger { color: var(--coral); }
+  .timer-bar .progress { font-size: 0.88rem; color: var(--ink-soft); font-weight: 500; }
+
+  .open-q {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+  }
+  .open-q textarea {
+    width: 100%;
+    min-height: 140px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    resize: vertical;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .open-q textarea:focus { outline: none; border-color: var(--orange); background: var(--surface); }
+  .open-q-sample {
+    display: none;
+    margin-top: 14px;
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.87rem;
+    line-height: 1.7;
+  }
+  .open-q-sample.show { display: block; }
+  .open-q-sample strong.lbl { color: var(--green); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.7px; display: block; margin-bottom: 6px; font-weight: 700; }
+
+  .results-card {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--orange-soft) 100%);
+    border: 2px solid var(--orange);
+    border-radius: 16px;
+    padding: 32px 36px;
+    text-align: center;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 30px rgba(234,88,12,0.15);
+  }
+  .results-card .big-score {
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: 'Fraunces', serif;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .results-card .verdict {
+    font-size: 1.15rem;
+    margin: 10px 0;
+    font-weight: 700;
+  }
+  .results-card .verdict.pass { color: var(--green); }
+  .results-card .verdict.fail { color: var(--coral); }
+  .results-card .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .results-card .stat-tile {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--border);
+  }
+  .results-card .stat-tile strong { display: block; font-size: 1.3rem; color: var(--ink); font-family: 'Fraunces', serif; font-weight: 700; margin-bottom: 2px; }
+
+  /* ============== AI CHAT ============== */
+  .ai-fab {
+    position: fixed;
+    bottom: 22px; right: 22px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    border: none;
+    box-shadow: 0 8px 24px rgba(234,88,12,0.5);
+    cursor: pointer;
+    font-size: 26px;
+    z-index: 100;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .ai-fab:hover { transform: scale(1.08); box-shadow: 0 10px 30px rgba(234,88,12,0.6); }
+  .ai-fab.hidden { display: none; }
+
+  .ai-panel {
+    position: fixed;
+    bottom: 22px; right: 22px;
+    width: 430px;
+    height: 640px;
+    max-height: calc(100vh - 44px);
+    background: var(--surface);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px var(--border);
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .ai-panel.open { display: flex; animation: slideup 0.25s ease-out; }
+  @keyframes slideup { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+  .ai-header {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ai-header-title { font-weight: 700; font-size: 0.95rem; }
+  .ai-header-sub { font-size: 0.72rem; opacity: 0.9; margin-top: 2px; }
+  .ai-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .ai-close:hover { background: rgba(255,255,255,0.3); }
+  .ai-context-pill {
+    padding: 8px 14px;
+    background: var(--yellow-soft);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.74rem;
+    color: var(--yellow);
+    font-weight: 600;
+  }
+  .ai-quick {
+    padding: 10px 12px 6px;
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 5px;
+    background: var(--surface);
+  }
+  .ai-quick-btn {
+    background: var(--orange-soft);
+    border: 1px solid var(--orange);
+    color: var(--orange-dark);
+    padding: 5px 11px;
+    border-radius: 16px;
+    font-size: 0.73rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+  }
+  .ai-quick-btn:hover { background: var(--orange); color: white; }
+  .ai-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    background: var(--bg);
+  }
+  .msg {
+    max-width: 88%;
+    padding: 10px 13px;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    word-wrap: break-word;
+  }
+  .msg.user {
+    align-self: flex-end;
+    background: var(--orange);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  .msg.assistant {
+    align-self: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+  .msg.assistant code {
+    background: var(--orange-soft);
+    color: var(--orange-dark);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  .msg.thinking { align-self: flex-start; background: var(--surface); border: 1px solid var(--border); color: var(--ink-light); font-style: italic; }
+  .msg.thinking::after { content: '...'; animation: dots 1.4s infinite; }
+  @keyframes dots { 0%,20%{content:'.';} 40%{content:'..';} 60%,100%{content:'...';} }
+  .msg-welcome { text-align: center; color: var(--ink-light); font-size: 0.83rem; padding: 24px 16px; }
+  .msg-welcome .emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+  .ai-input-wrap { padding: 10px 12px; border-top: 1px solid var(--border); background: var(--surface); display: flex; gap: 8px; }
+  .ai-input {
+    flex: 1;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    resize: none;
+    min-height: 40px;
+    max-height: 110px;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  .ai-input:focus { outline: none; border-color: var(--orange); background: var(--surface); }
+  .ai-send {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0 18px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+  .ai-send:hover { filter: brightness(1.05); }
+  .ai-send:disabled { background: var(--ink-light); cursor: not-allowed; }
+
+  .footer-note {
+    margin-top: 48px;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--ink-light);
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  /* ============== CLICKABLE TERMS + MODAL ============== */
+  .term {
+    color: var(--orange-dark);
+    border-bottom: 1.5px dotted var(--orange);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 600;
+    padding: 0 1px;
+  }
+  .term:hover {
+    background: var(--orange-soft);
+    border-bottom-style: solid;
+    border-radius: 3px;
+  }
+  .term-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26, 15, 8, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 24px;
+  }
+  .term-overlay.open { display: flex; animation: fadein 0.2s ease; }
+  .term-modal {
+    background: var(--surface);
+    border-radius: 18px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    animation: slideup 0.25s ease;
+  }
+  .term-modal-head {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    color: white;
+    padding: 22px 26px;
+    border-radius: 18px 18px 0 0;
+    position: relative;
+  }
+  .term-modal-head .term-cat {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    opacity: 0.9;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .term-modal-head h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .term-modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: rgba(255,255,255,0.22);
+    border: none;
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .term-modal-close:hover { background: rgba(255,255,255,0.32); }
+  .term-modal-body {
+    padding: 22px 26px 24px;
+  }
+  .term-modal-body h4 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--orange);
+    margin: 16px 0 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+  .term-modal-body h4:first-child { margin-top: 0; }
+  .term-modal-body p { font-size: 0.92rem; line-height: 1.65; margin: 5px 0; }
+  .term-example {
+    background: var(--orange-soft);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .term-related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+  .term-related .term-chip {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--orange-dark);
+    padding: 4px 11px;
+    border-radius: 14px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .term-related .term-chip:hover { background: var(--orange); color: white; border-color: var(--orange); }
+
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 90;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 38px; height: 38px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  @media (max-width: 920px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; top: 0; left: 0; width: 270px; z-index: 80; transform: translateX(-100%); transition: transform 0.2s; }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 20px rgba(0,0,0,0.1); }
+    .main { padding: 64px 18px 60px; }
+    .menu-toggle { display: block; }
+    .phases { grid-template-columns: repeat(2, 1fr); }
+    .panel-title { font-size: 1.45rem; }
+    .hero { padding: 28px 24px; }
+    .hero h1 { font-size: 1.8rem; }
+    .ai-panel { width: calc(100vw - 24px); right: 12px; bottom: 12px; height: calc(100vh - 24px); }
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-dot">DT</div>
+      <div>
+        <div class="brand-title">Design Thinking</div>
+        <div class="brand-sub">Study Hub · CUNEF</div>
+      </div>
+    </div>
+
+    <div class="progress-block">
+      <div class="label"><span>Your Progress</span><span id="progress-label">0 / 8</span></div>
+      <div class="bar"><div class="bar-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <h4>Start here</h4>
+    <ul class="nav">
+      <li><button class="nav-btn active" data-panel="home"><span class="label-wrap"><span>🏠 Home</span></span></button></li>
+    </ul>
+
+    <h4>Syllabus</h4>
+    <ul class="nav" id="topic-nav">
+      <li><button class="nav-btn" data-panel="t1"><span class="label-wrap"><span class="status-dot" data-status-for="t1" onclick="cycleStatus(event,'t1')"></span><span>1 · Introduction</span></span><span class="priority high">High</span></button></li>
+      <li><button class="nav-btn" data-panel="t2"><span class="label-wrap"><span class="status-dot" data-status-for="t2" onclick="cycleStatus(event,'t2')"></span><span>2 · Frameworks</span></span><span class="priority high">High</span></button></li>
+      <li><button class="nav-btn" data-panel="t3"><span class="label-wrap"><span class="status-dot" data-status-for="t3" onclick="cycleStatus(event,'t3')"></span><span>3 · 5 Phases</span></span><span class="priority critical">Critical</span></button></li>
+      <li><button class="nav-btn" data-panel="t4"><span class="label-wrap"><span class="status-dot" data-status-for="t4" onclick="cycleStatus(event,'t4')"></span><span>4 · Empathy</span></span><span class="priority high">High</span></button></li>
+      <li><button class="nav-btn" data-panel="t5"><span class="label-wrap"><span class="status-dot" data-status-for="t5" onclick="cycleStatus(event,'t5')"></span><span>5 · Ideation</span></span><span class="priority high">High</span></button></li>
+      <li><button class="nav-btn" data-panel="t6"><span class="label-wrap"><span class="status-dot" data-status-for="t6" onclick="cycleStatus(event,'t6')"></span><span>6 · Business Model</span></span><span class="priority critical">Critical</span></button></li>
+      <li><button class="nav-btn" data-panel="t7"><span class="label-wrap"><span class="status-dot" data-status-for="t7" onclick="cycleStatus(event,'t7')"></span><span>7 · MVP</span></span><span class="priority high">High</span></button></li>
+      <li><button class="nav-btn" data-panel="t8"><span class="label-wrap"><span class="status-dot" data-status-for="t8" onclick="cycleStatus(event,'t8')"></span><span>8 · Pitch</span></span><span class="priority medium">Medium</span></button></li>
+    </ul>
+
+    <h4>Practice</h4>
+    <ul class="nav">
+      <li><button class="nav-btn" data-panel="flashcards"><span class="label-wrap"><span>🃏 Flashcards</span></span></button></li>
+      <li><button class="nav-btn" data-panel="quiz"><span class="label-wrap"><span>🧠 Quiz Mode</span></span></button></li>
+      <li><button class="nav-btn" data-panel="mock"><span class="label-wrap"><span>📝 Mock Exam</span></span></button></li>
+    </ul>
+
+    <div class="exam-card">
+      <div class="label">📅 Final Exam</div>
+      <strong>Friday May 29</strong>
+      <div class="meta">MC + 2 open · 60% · Min 5/10</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ====== HOME ====== -->
+    <section class="panel active" id="home">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-eyebrow">Design Thinking · CUNEF</div>
+          <h1>Welcome back, Francisco</h1>
+          <p>Your interactive hub for the Design Thinking exam this Friday. Browse the 8 topics, practice with flashcards and quizzes, or simulate the full exam. Claude is one click away.</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong id="hero-today-time">—</strong><span id="hero-today-date">Today</span></div>
+            <div class="hero-stat"><strong id="hero-countdown">—</strong><span id="hero-countdown-label">Time to exam</span></div>
+            <div class="hero-stat"><strong id="hero-done">0</strong><span>Topics done · 8 total</span></div>
+            <div class="hero-stat"><strong id="hero-fc-known">0/34</strong><span>Flashcards known</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-banner">
+        <div class="tip-icon">💡</div>
+        <div><strong>Daily study tip:</strong> <span id="daily-tip">Topics 3 (5 Phases) and 6 (BMC + VPC) are your best candidates for the 2 open questions. Spend extra time there.</span></div>
+      </div>
+
+      <h2 class="section-title">Quick actions</h2>
+      <div class="quick-actions">
+        <div class="qa-card flash" onclick="navTo('flashcards')">
+          <div class="qa-icon">🃏</div>
+          <h3>Flashcards</h3>
+          <p>34 cards across all 8 topics. Mark known or needs review as you go.</p>
+        </div>
+        <div class="qa-card quiz" onclick="navTo('quiz')">
+          <div class="qa-icon">🧠</div>
+          <h3>Quiz Mode</h3>
+          <p>Multiple choice practice. Pick a topic, get scored out of 10.</p>
+        </div>
+        <div class="qa-card mock" onclick="navTo('mock')">
+          <div class="qa-icon">📝</div>
+          <h3>Mock Exam</h3>
+          <p>Full simulation: 20 MC + 2 open questions, 50 min timer.</p>
+        </div>
+        <div class="qa-card ai" onclick="openAI()">
+          <div class="qa-icon">✨</div>
+          <h3>Ask Claude</h3>
+          <p>Chat with an AI tutor that knows what topic you're studying.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">The syllabus · 8 topics</h2>
+      <div class="topics-grid">
+        <div class="topic-tile t1" onclick="navTo('t1')">
+          <div class="tile-num">Topic 1</div>
+          <h3>Introduction</h3>
+          <div class="tile-sub">What DT is · Mindset · The 3 lenses (D-F-V) · 7 attitudes</div>
+          <div class="tile-status" data-tile-status="t1">○ Not started</div>
+        </div>
+        <div class="topic-tile t2" onclick="navTo('t2')">
+          <div class="tile-num">Topic 2</div>
+          <h3>Frameworks</h3>
+          <div class="tile-sub">VUCA · BANI · DT vs Lean vs Agile · 4 axes</div>
+          <div class="tile-status" data-tile-status="t2">○ Not started</div>
+        </div>
+        <div class="topic-tile t3" onclick="navTo('t3')">
+          <div class="tile-num">Topic 3 · Critical</div>
+          <h3>The 5 Phases</h3>
+          <div class="tile-sub">Empathize → Define → Ideate → Prototype → Test · HMW</div>
+          <div class="tile-status" data-tile-status="t3">○ Not started</div>
+        </div>
+        <div class="topic-tile t4" onclick="navTo('t4')">
+          <div class="tile-num">Topic 4</div>
+          <h3>Empathy & Research</h3>
+          <div class="tile-sub">Empathy Map · User Persona · Interviews · 5 Whys</div>
+          <div class="tile-status" data-tile-status="t4">○ Not started</div>
+        </div>
+        <div class="topic-tile t5" onclick="navTo('t5')">
+          <div class="tile-num">Topic 5</div>
+          <h3>Ideation</h3>
+          <div class="tile-sub">Osborn's 4 rules · SCAMPER · Brainwriting · Crazy 8s</div>
+          <div class="tile-status" data-tile-status="t5">○ Not started</div>
+        </div>
+        <div class="topic-tile t6" onclick="navTo('t6')">
+          <div class="tile-num">Topic 6 · Critical</div>
+          <h3>Business Model</h3>
+          <div class="tile-sub">BMC's 9 blocks · VPC · Build-Measure-Learn · Pivot</div>
+          <div class="tile-status" data-tile-status="t6">○ Not started</div>
+        </div>
+        <div class="topic-tile t7" onclick="navTo('t7')">
+          <div class="tile-num">Topic 7</div>
+          <h3>Prototyping & MVP</h3>
+          <div class="tile-sub">Fidelity range · 5 MVP types · PoC vs MVP</div>
+          <div class="tile-status" data-tile-status="t7">○ Not started</div>
+        </div>
+        <div class="topic-tile t8" onclick="navTo('t8')">
+          <div class="tile-num">Topic 8</div>
+          <h3>Pitch & Storytelling</h3>
+          <div class="tile-sub">Hook → Problem → Solution → VP → Market → CTA</div>
+          <div class="tile-status" data-tile-status="t8">○ Not started</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 1 ====== -->
+    <section class="panel" id="t1" data-topic-name="Topic 1 — Introduction to Design Thinking" data-topic-summary="DT = process + mindset · Origin IDEO + Stanford · 3 lenses (Desirability, Feasibility, Viability) + Responsibility · 7 mindset attitudes">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 1</div>
+        <h1 class="panel-title">Introduction to Design Thinking</h1>
+        <p class="panel-subtitle">What DT is · Mindset · The 3 lenses</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t1-toc">Contents</button>
+        <button class="tab-btn" data-tab="t1-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t1-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t1-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What Design Thinking is, and its origin <span class="toc-tag">(IDEO, Stanford)</span></li>
+          <li>DT as <strong>process + mindset</strong></li>
+          <li>The <strong>3 lenses</strong>: Desirability, Feasibility, Viability</li>
+          <li>The modern 4th lens: Responsibility</li>
+          <li>The <strong>7 mindset attitudes</strong></li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> definitions, the 3 lenses, the 7 attitudes, empathy vs sympathy.</div>
+      </div>
+      <div class="tab-panel" id="t1-guide">
+        <h2>What is Design Thinking?</h2>
+        <p><strong>Design Thinking (DT)</strong> is a <strong>human-centered methodology</strong> for solving complex problems. Not just a process — it's also a <strong>mindset</strong> combining empathy, creativity and rationality.</p>
+        <p><strong>Origin:</strong> popularized by <strong>IDEO</strong> (David Kelley & Tim Brown) and systematized into 5 phases by <strong>Stanford's d.school</strong>.</p>
+        <div class="callout key"><strong>🔑 Key rule:</strong> DT = Process + Mindset. Saying only "a 5-phase process" is incomplete.</div>
+        <h2>The 3 lenses</h2>
+        <table><thead><tr><th>Lens</th><th>Question</th><th>Perspective</th></tr></thead><tbody>
+          <tr><td><strong>Desirability</strong></td><td>Does the user want it?</td><td>User</td></tr>
+          <tr><td><strong>Feasibility</strong></td><td>Can it be built technically?</td><td>Engineering</td></tr>
+          <tr><td><strong>Viability</strong></td><td>Is it economically sustainable?</td><td>Business</td></tr>
+        </tbody></table>
+        <div class="callout key">Modern 4th lens: <strong>Responsibility</strong> (ethical, sustainable).</div>
+        <div class="callout exam"><strong>⚠️ Trick alert:</strong> Profitability is NOT one of the lenses — the correct word is Viability.</div>
+        <h2>The 7 mindset attitudes</h2>
+        <table><thead><tr><th>#</th><th>Attitude</th><th>Idea</th></tr></thead><tbody>
+          <tr><td>1</td><td>Radical curiosity</td><td>Always ask "why?"</td></tr>
+          <tr><td>2</td><td>Empathy</td><td>Feel WITH the user, not FOR</td></tr>
+          <tr><td>3</td><td>Embrace ambiguity</td><td>Uncertainty = opportunity</td></tr>
+          <tr><td>4</td><td>Bias toward action</td><td>Do before over-planning</td></tr>
+          <tr><td>5</td><td>Learning from failure</td><td>"Fail fast, fail cheap"</td></tr>
+          <tr><td>6</td><td>Collaboration</td><td>Diverse > homogeneous teams</td></tr>
+          <tr><td>7</td><td>Creative optimism</td><td>Better solution always exists</td></tr>
+        </tbody></table>
+      </div>
+      <div class="tab-panel" id="t1-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Definition</div><div class="sum-value">DT = Process + Mindset</div><div class="sum-sub">Human-centered</div></div>
+          <div class="sum-card"><div class="sum-label">Origin</div><div class="sum-value">IDEO · Stanford</div><div class="sum-sub">Kelley & Brown</div></div>
+          <div class="sum-card"><div class="sum-label">3 lenses</div><div class="sum-value">D · F · V</div><div class="sum-sub">+ 4th: Responsibility</div></div>
+          <div class="sum-card"><div class="sum-label">Mindset</div><div class="sum-value">7 attitudes</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 2 ====== -->
+    <section class="panel" id="t2" data-topic-name="Topic 2 — Theoretical Frameworks" data-topic-summary="VUCA vs BANI · DT vs Lean vs Agile (Prototype, MVP, Sprint) · 4 axes of innovation, DT starts with Desirability">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 2</div>
+        <h1 class="panel-title">Theoretical Frameworks</h1>
+        <p class="panel-subtitle">VUCA · BANI · DT vs Lean vs Agile · 4 axes</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t2-toc">Contents</button>
+        <button class="tab-btn" data-tab="t2-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t2-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t2-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>Why DT is needed today</li>
+          <li>The <strong>VUCA</strong> framework (1990s)</li>
+          <li>The <strong>BANI</strong> framework (post-pandemic)</li>
+          <li><strong>DT vs Lean Startup vs Agile</strong></li>
+          <li>The <strong>4 axes of innovation</strong></li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> letters of VUCA and BANI, 3-methodology comparison, "DT starts with desirability".</div>
+      </div>
+      <div class="tab-panel" id="t2-guide">
+        <h2>Why DT today?</h2>
+        <p>Because the world is <strong>VUCA + BANI</strong>. Both describe complexity; BANI adds the emotional impact on people.</p>
+        <h2>VUCA vs BANI</h2>
+        <table><thead><tr><th>VUCA (1990s)</th><th>BANI (post-pandemic)</th></tr></thead><tbody>
+          <tr><td><strong>V</strong>olatility</td><td><strong>B</strong>rittle</td></tr>
+          <tr><td><strong>U</strong>ncertainty</td><td><strong>A</strong>nxious</td></tr>
+          <tr><td><strong>C</strong>omplexity</td><td><strong>N</strong>on-linear</td></tr>
+          <tr><td><strong>A</strong>mbiguity</td><td><strong>I</strong>ncomprehensible</td></tr>
+        </tbody></table>
+        <div class="callout key">BANI doesn't replace VUCA — it complements it with the emotional impact.</div>
+        <h2>DT vs Lean Startup vs Agile</h2>
+        <table><thead><tr><th>Dimension</th><th>Design Thinking</th><th>Lean Startup</th><th>Agile</th></tr></thead><tbody>
+          <tr><td><strong>Founder</strong></td><td>Brown / Kelley (IDEO)</td><td>Eric Ries</td><td>Agile Manifesto</td></tr>
+          <tr><td><strong>Focus</strong></td><td>Problem</td><td>Business</td><td>Build</td></tr>
+          <tr><td><strong>Artifact</strong></td><td><strong>Prototype</strong></td><td><strong>MVP</strong></td><td><strong>Sprint</strong></td></tr>
+          <tr><td><strong>Key question</strong></td><td>Right problem?</td><td>Market exists?</td><td>Built well?</td></tr>
+        </tbody></table>
+        <div class="callout exam"><strong>📝 Memorize:</strong> DT → Prototype · Lean → MVP · Agile → Sprint</div>
+        <h2>The 4 axes of innovation</h2>
+        <ul>
+          <li><strong>Desirability</strong> — does the user want it?</li>
+          <li><strong>Feasibility</strong> — can we build it?</li>
+          <li><strong>Viability</strong> — is it profitable?</li>
+          <li><strong>Responsibility</strong> — is it ethical?</li>
+        </ul>
+        <div class="callout key">DT always starts with <strong>desirability</strong>. Traditional business starts with <strong>viability</strong>.</div>
+      </div>
+      <div class="tab-panel" id="t2-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Context</div><div class="sum-value">VUCA + BANI</div></div>
+          <div class="sum-card"><div class="sum-label">DT</div><div class="sum-value">Problem · Prototype</div></div>
+          <div class="sum-card"><div class="sum-label">Lean</div><div class="sum-value">Business · MVP</div></div>
+          <div class="sum-card"><div class="sum-label">Agile</div><div class="sum-value">Build · Sprint</div></div>
+          <div class="sum-card"><div class="sum-label">4 axes</div><div class="sum-value">D · F · V · R</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 3 ====== -->
+    <section class="panel" id="t3" data-topic-name="Topic 3 — The 5 Phases" data-topic-summary="5 phases iterative not linear · Divergent 1+3, convergent 2+4+5 · HMW bridges Define → Ideate">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 3 · Critical</div>
+        <h1 class="panel-title">The 5 Phases of Design Thinking</h1>
+        <p class="panel-subtitle">Empathize · Define · Ideate · Prototype · Test</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t3-toc">Contents</button>
+        <button class="tab-btn" data-tab="t3-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t3-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t3-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>The 5 phases and the goal of each</li>
+          <li><strong>Iterative, NOT linear</strong> process</li>
+          <li><strong>Divergent vs convergent</strong> thinking</li>
+          <li>The <strong>HMW</strong> bridge</li>
+          <li>Typical tools per phase</li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> phase order, divergent/convergent, HMW structure, very likely an open question applying the 5 phases.</div>
+      </div>
+      <div class="tab-panel" id="t3-guide">
+        <h2>The 5 phases (non-linear, iterative)</h2>
+        <div class="phases">
+          <div class="phase-card div"><span class="num">1</span><div class="name">Empathize</div><span class="type">Divergent</span></div>
+          <div class="phase-card con"><span class="num">2</span><div class="name">Define</div><span class="type">Convergent</span></div>
+          <div class="phase-card div"><span class="num">3</span><div class="name">Ideate</div><span class="type">Divergent</span></div>
+          <div class="phase-card con"><span class="num">4</span><div class="name">Prototype</div><span class="type">Convergent</span></div>
+          <div class="phase-card con"><span class="num">5</span><div class="name">Test</div><span class="type">Convergent</span></div>
+        </div>
+        <table><thead><tr><th>Phase</th><th>Goal</th><th>Tools</th></tr></thead><tbody>
+          <tr><td><strong>1. Empathize</strong></td><td>Understand the user</td><td>Interviews, observation, shadowing</td></tr>
+          <tr><td><strong>2. Define</strong></td><td>Identify the right problem</td><td>POV, HMW</td></tr>
+          <tr><td><strong>3. Ideate</strong></td><td>Generate many ideas</td><td>Brainstorming, SCAMPER, Crazy 8s</td></tr>
+          <tr><td><strong>4. Prototype</strong></td><td>Build to learn</td><td>Sketches, mockups, wireframes</td></tr>
+          <tr><td><strong>5. Test</strong></td><td>Validate with users</td><td>Usability tests, observation</td></tr>
+        </tbody></table>
+        <h2>Divergent vs convergent</h2>
+        <ul>
+          <li><strong>Divergent</strong> (open, generate) → Phases <strong>1 and 3</strong></li>
+          <li><strong>Convergent</strong> (close, filter, decide) → Phases <strong>2, 4 and 5</strong></li>
+        </ul>
+        <h2>HMW · How Might We</h2>
+        <p>Bridge between Define → Ideate.</p>
+        <div class="callout tip"><strong>Structure:</strong> "How might we [action verb] for [user] so that [benefit]?"</div>
+      </div>
+      <div class="tab-panel" id="t3-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">5 phases</div><div class="sum-value">E · D · I · P · T</div></div>
+          <div class="sum-card"><div class="sum-label">Process</div><div class="sum-value">Iterative</div></div>
+          <div class="sum-card"><div class="sum-label">Divergent</div><div class="sum-value">1 and 3</div></div>
+          <div class="sum-card"><div class="sum-label">Convergent</div><div class="sum-value">2, 4 and 5</div></div>
+          <div class="sum-card"><div class="sum-label">HMW</div><div class="sum-value">Define → Ideate</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 4 ====== -->
+    <section class="panel" id="t4" data-topic-name="Topic 4 — Empathy & User Research" data-topic-summary="Real empathy = observe + listen + interact · Empathy ≠ Sympathy · Empathy Map 6 quadrants · User Persona based on real research · 5 Whys">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 4</div>
+        <h1 class="panel-title">Empathy & User Research</h1>
+        <p class="panel-subtitle">Research methods · Empathy Map · User Persona · Interviews</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t4-toc">Contents</button>
+        <button class="tab-btn" data-tab="t4-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t4-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t4-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What <strong>real empathy</strong> means in DT</li>
+          <li>Research methods</li>
+          <li>The <strong>Empathy Map</strong> (6 quadrants)</li>
+          <li>The <strong>User Persona</strong></li>
+          <li>Interview guide (5 Whys rule)</li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> empathy vs sympathy, the 6 Empathy Map quadrants, persona golden rule.</div>
+      </div>
+      <div class="tab-panel" id="t4-guide">
+        <h2>Real empathy in DT</h2>
+        <p>Empathy in DT is <strong>NOT</strong> just imagining how someone feels. It means <strong>observing, listening and interacting</strong> with real users in real context.</p>
+        <div class="callout key"><strong>Empathy</strong> = feeling WITH. <strong>Sympathy</strong> = feeling FOR (pity).</div>
+        <h2>Research methods</h2>
+        <table><thead><tr><th>Method</th><th>What it is</th><th>When</th></tr></thead><tbody>
+          <tr><td><strong>In-depth interview</strong></td><td>Semi-structured 1:1, 30-60 min</td><td>Core method, always</td></tr>
+          <tr><td><strong>Observation</strong></td><td>Watch in natural environment</td><td>Hidden behaviors</td></tr>
+          <tr><td><strong>Shadowing</strong></td><td>Follow user during day</td><td>Habitual processes</td></tr>
+          <tr><td><strong>Focus Group</strong></td><td>Group discussion</td><td>Early exploration</td></tr>
+          <tr><td><strong>Survey</strong></td><td>Quantitative</td><td>Validate hypotheses</td></tr>
+        </tbody></table>
+        <h2>Empathy Map (6 quadrants)</h2>
+        <table><tbody>
+          <tr><td><strong>Think & Feel</strong></td><td>Concerns, aspirations</td></tr>
+          <tr><td><strong>See</strong></td><td>Environment, market</td></tr>
+          <tr><td><strong>Hear</strong></td><td>Friends, social media</td></tr>
+          <tr><td><strong>Say & Do</strong></td><td>Observable behavior</td></tr>
+          <tr><td><strong>Pains</strong></td><td>Frustrations, obstacles</td></tr>
+          <tr><td><strong>Gains</strong></td><td>Desires, success metrics</td></tr>
+        </tbody></table>
+        <h2>User Persona</h2>
+        <p>Fictional but realistic profile based on <strong>real research</strong>.</p>
+        <ul>
+          <li><strong>Name + photo</strong>, demographics, quote</li>
+          <li><strong>Goals + frustrations</strong></li>
+          <li><strong>Behaviors + channels</strong></li>
+        </ul>
+        <div class="callout exam"><strong>🔑 Golden rule:</strong> NEVER based on imagination or stereotypes.</div>
+        <h2>Interview tips</h2>
+        <ul>
+          <li><strong>5 Whys rule</strong> — ask "why?" 5 times to reach the root</li>
+          <li>Past behavior, not hypothetical future</li>
+          <li>Don't suggest answers</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="t4-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Empathy</div><div class="sum-value">Observe + listen + interact</div></div>
+          <div class="sum-card"><div class="sum-label">vs Sympathy</div><div class="sum-value">With vs For</div></div>
+          <div class="sum-card"><div class="sum-label">Empathy Map</div><div class="sum-value">6 quadrants</div></div>
+          <div class="sum-card"><div class="sum-label">Persona</div><div class="sum-value">Real research</div></div>
+          <div class="sum-card"><div class="sum-label">5 Whys</div><div class="sum-value">Root cause</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 5 ====== -->
+    <section class="panel" id="t5" data-topic-name="Topic 5 — Ideation" data-topic-summary="Osborn's 4 rules · Brainwriting 6-3-5 = 108 ideas/30 min · SCAMPER · Crazy 8s (8 ideas/8 min) · TRIZ · HMW · Dot voting and Impact/Effort">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 5</div>
+        <h1 class="panel-title">Ideation & Creativity</h1>
+        <p class="panel-subtitle">Techniques to generate ideas — and rules to filter them</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t5-toc">Contents</button>
+        <button class="tab-btn" data-tab="t5-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t5-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t5-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What ideation is (quantity, no judgment)</li>
+          <li>Creative blocks</li>
+          <li><strong>Osborn's 4 rules</strong></li>
+          <li><strong>Brainwriting</strong>, <strong>SCAMPER</strong>, <strong>Crazy 8s</strong>, <strong>TRIZ</strong></li>
+          <li>Idea selection methods</li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> Osborn's 4 rules, SCAMPER letters, Brainwriting math.</div>
+      </div>
+      <div class="tab-panel" id="t5-guide">
+        <h2>Ideation rule</h2>
+        <p><strong>Quantity over quality, judgment suspended.</strong></p>
+        <h2>Osborn's 4 rules (1953)</h2>
+        <ul>
+          <li><strong>Quantity over quality</strong></li>
+          <li><strong>No criticism</strong></li>
+          <li><strong>Combine and improve</strong> ("yes, and…")</li>
+          <li><strong>Wild ideas welcome</strong></li>
+        </ul>
+        <h2>Brainwriting 6-3-5</h2>
+        <p><strong>6 people · 3 ideas · 5 minutes.</strong> Rotate sheets. Result: <strong>108 ideas in 30 minutes</strong>.</p>
+        <h2>SCAMPER</h2>
+        <table><thead><tr><th>Letter</th><th>Question</th></tr></thead><tbody>
+          <tr><td><strong>S</strong></td><td>Substitute — replace components</td></tr>
+          <tr><td><strong>C</strong></td><td>Combine — merge ideas</td></tr>
+          <tr><td><strong>A</strong></td><td>Adapt — borrow from elsewhere</td></tr>
+          <tr><td><strong>M</strong></td><td>Modify / Magnify / Minify</td></tr>
+          <tr><td><strong>P</strong></td><td>Put to other uses</td></tr>
+          <tr><td><strong>E</strong></td><td>Eliminate</td></tr>
+          <tr><td><strong>R</strong></td><td>Reverse / Rearrange</td></tr>
+        </tbody></table>
+        <h2>Crazy 8s + TRIZ + HMW</h2>
+        <p><strong>Crazy 8s:</strong> 8 ideas in 8 min. <strong>TRIZ:</strong> Russian theory. <strong>HMW:</strong> Define → Ideate bridge.</p>
+        <h2>Selection methods</h2>
+        <ul>
+          <li><strong>Dot voting</strong></li>
+          <li><strong>Impact / Effort matrix</strong></li>
+          <li><strong>3-lens filter</strong> (D/F/V)</li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="t5-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Rule</div><div class="sum-value">Quantity > Quality</div></div>
+          <div class="sum-card"><div class="sum-label">Osborn</div><div class="sum-value">4 rules</div></div>
+          <div class="sum-card"><div class="sum-label">Brainwriting</div><div class="sum-value">108 / 30 min</div></div>
+          <div class="sum-card"><div class="sum-label">SCAMPER</div><div class="sum-value">7 letters</div></div>
+          <div class="sum-card"><div class="sum-label">Crazy 8s</div><div class="sum-value">8 in 8 min</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 6 ====== -->
+    <section class="panel" id="t6" data-topic-name="Topic 6 — Business Model & VPC" data-topic-summary="BMC 9 blocks (Osterwalder 2010) · VPC Customer Profile (Jobs/Pains/Gains) ↔ Value Map (Products/Pain Relievers/Gain Creators) · PMF when sides match · Build-Measure-Learn (Ries) · Pivot">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 6 · Critical</div>
+        <h1 class="panel-title">Business Model & Value Proposition</h1>
+        <p class="panel-subtitle">BMC · VPC · Build-Measure-Learn · Pivot</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t6-toc">Contents</button>
+        <button class="tab-btn" data-tab="t6-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t6-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t6-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What a business model is</li>
+          <li>The <strong>9 BMC blocks</strong> (Osterwalder)</li>
+          <li>The <strong>VPC</strong>: Jobs / Pains / Gains</li>
+          <li>The <strong>Build-Measure-Learn</strong> cycle</li>
+          <li><strong>Pivot</strong></li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> 9 BMC blocks (likely open question), VPC structure, PMF, pivot.</div>
+      </div>
+      <div class="tab-panel" id="t6-guide">
+        <h2>Business Model Canvas</h2>
+        <p>By <strong>Alexander Osterwalder</strong> (2010). Describes how an organization <strong>creates, delivers and captures value</strong>.</p>
+        <h2>The 9 blocks</h2>
+        <table><thead><tr><th>#</th><th>Block</th><th>Question</th></tr></thead><tbody>
+          <tr><td>1</td><td><strong>Customer Segments</strong></td><td>Who do we serve?</td></tr>
+          <tr><td>2</td><td><strong>Value Propositions</strong></td><td>What problem do we solve?</td></tr>
+          <tr><td>3</td><td><strong>Channels</strong></td><td>How do we reach them?</td></tr>
+          <tr><td>4</td><td><strong>Customer Relationships</strong></td><td>How do we manage relationship?</td></tr>
+          <tr><td>5</td><td><strong>Revenue Streams</strong></td><td>What will they pay?</td></tr>
+          <tr><td>6</td><td><strong>Key Resources</strong></td><td>What assets?</td></tr>
+          <tr><td>7</td><td><strong>Key Activities</strong></td><td>What do we do?</td></tr>
+          <tr><td>8</td><td><strong>Key Partners</strong></td><td>Who do we partner with?</td></tr>
+          <tr><td>9</td><td><strong>Cost Structure</strong></td><td>What does it cost?</td></tr>
+        </tbody></table>
+        <h2>Value Proposition Canvas</h2>
+        <table><thead><tr><th>Customer Profile</th><th>Value Map</th></tr></thead><tbody>
+          <tr><td><strong>Jobs to be done</strong></td><td><strong>Products & Services</strong></td></tr>
+          <tr><td><strong>Pains</strong></td><td><strong>Pain Relievers</strong></td></tr>
+          <tr><td><strong>Gains</strong></td><td><strong>Gain Creators</strong></td></tr>
+        </tbody></table>
+        <div class="callout key"><strong>Product-Market Fit</strong> = both sides match.</div>
+        <h2>Build-Measure-Learn (Eric Ries)</h2>
+        <ul>
+          <li><strong>BUILD</strong> — smallest experiment / MVP</li>
+          <li><strong>MEASURE</strong> — actionable metrics</li>
+          <li><strong>LEARN</strong> — confirm or pivot?</li>
+        </ul>
+        <div class="callout key"><strong>Pivot</strong> = change strategy while keeping the learning. NOT failure.</div>
+      </div>
+      <div class="tab-panel" id="t6-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">BMC</div><div class="sum-value">9 blocks</div></div>
+          <div class="sum-card"><div class="sum-label">VPC</div><div class="sum-value">Profile ↔ Map</div></div>
+          <div class="sum-card"><div class="sum-label">PMF</div><div class="sum-value">Sides match</div></div>
+          <div class="sum-card"><div class="sum-label">Lean</div><div class="sum-value">B · M · L</div></div>
+          <div class="sum-card"><div class="sum-label">Pivot</div><div class="sum-value">Keep learning</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 7 ====== -->
+    <section class="panel" id="t7" data-topic-name="Topic 7 — Prototyping & MVP" data-topic-summary="Prototype = build to learn · Fidelity range · MVP 5 types: Landing, Concierge, Wizard of Oz, Explainer video, Functional · PoC (tech) vs MVP (market)">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 7</div>
+        <h1 class="panel-title">Prototyping & MVP</h1>
+        <p class="panel-subtitle">Prototype types · MVP · PoC vs MVP</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t7-toc">Contents</button>
+        <button class="tab-btn" data-tab="t7-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t7-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t7-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What a prototype is</li>
+          <li>Types by fidelity</li>
+          <li>The <strong>MVP</strong> and its 5 types</li>
+          <li><strong>PoC vs MVP</strong></li>
+          <li>Key principles</li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> PoC vs MVP, 5 MVP types with real examples.</div>
+      </div>
+      <div class="tab-panel" id="t7-guide">
+        <h2>Prototype</h2>
+        <p>Tangible representation to <strong>learn, communicate and test</strong>.</p>
+        <div class="callout key">Build to learn, not to demonstrate. Cheap, fast, disposable.</div>
+        <h2>Types by fidelity</h2>
+        <table><thead><tr><th>Type</th><th>Fidelity</th></tr></thead><tbody>
+          <tr><td>Sketch</td><td>Very low</td></tr>
+          <tr><td>Storyboard</td><td>Low</td></tr>
+          <tr><td>Wireframe</td><td>Low-medium</td></tr>
+          <tr><td>Mockup</td><td>Medium-high</td></tr>
+          <tr><td>Physical</td><td>Variable</td></tr>
+          <tr><td>Functional / MVP</td><td>High</td></tr>
+        </tbody></table>
+        <h2>MVP (Eric Ries)</h2>
+        <p>Min version for <strong>max validated learning with min effort</strong>.</p>
+        <h3>5 MVP types</h3>
+        <ul>
+          <li><strong>Landing page</strong></li>
+          <li><strong>Concierge</strong> (early Airbnb)</li>
+          <li><strong>Wizard of Oz</strong></li>
+          <li><strong>Explainer video</strong> (Dropbox)</li>
+          <li><strong>Functional prototype</strong></li>
+        </ul>
+        <h2>PoC vs MVP</h2>
+        <table><thead><tr><th></th><th>PoC</th><th>MVP</th></tr></thead><tbody>
+          <tr><td><strong>Goal</strong></td><td>Tech possible?</td><td>Market exists?</td></tr>
+          <tr><td><strong>Audience</strong></td><td>Internal</td><td>Real users</td></tr>
+        </tbody></table>
+        <h2>Principles</h2>
+        <ul>
+          <li><strong>Fail fast, fail cheap</strong></li>
+          <li><strong>Show, don't tell</strong></li>
+          <li><strong>Build to learn, not to impress</strong></li>
+        </ul>
+      </div>
+      <div class="tab-panel" id="t7-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Rule</div><div class="sum-value">Build to learn</div></div>
+          <div class="sum-card"><div class="sum-label">MVP</div><div class="sum-value">Eric Ries</div></div>
+          <div class="sum-card"><div class="sum-label">5 types</div><div class="sum-value">L · C · W · E · F</div></div>
+          <div class="sum-card"><div class="sum-label">PoC vs MVP</div><div class="sum-value">Tech vs Market</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TOPIC 8 ====== -->
+    <section class="panel" id="t8" data-topic-name="Topic 8 — Pitch & Storytelling" data-topic-summary="Elevator Pitch 30-90 sec · Hook → Problem → Solution → VP → Market → CTA · Hero's Journey: user is hero, you are guide">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Topic 8</div>
+        <h1 class="panel-title">Elevator Pitch & Storytelling</h1>
+        <p class="panel-subtitle">Selling your idea in 60 seconds</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="t8-toc">Contents</button>
+        <button class="tab-btn" data-tab="t8-guide">Study Guide</button>
+        <button class="tab-btn" data-tab="t8-sum">Summary</button>
+      </div>
+      <div class="tab-panel active" id="t8-toc">
+        <h2>What you'll learn</h2>
+        <div class="toc"><ol>
+          <li>What an Elevator Pitch is</li>
+          <li>The <strong>6-part structure</strong></li>
+          <li>Common mistakes</li>
+          <li><strong>Storytelling</strong> and Hero's Journey</li>
+          <li>Who is the hero (NOT you)</li>
+        </ol></div>
+        <div class="callout exam"><strong>📝 Exam focus:</strong> 6-part structure in order, "user is the hero".</div>
+      </div>
+      <div class="tab-panel" id="t8-guide">
+        <h2>Elevator Pitch</h2>
+        <p>Short presentation (<strong>30-90 seconds</strong>).</p>
+        <div class="callout key">Goal: NOT to close a sale — earn the next conversation.</div>
+        <h2>6-part structure</h2>
+        <table><thead><tr><th>#</th><th>Part</th></tr></thead><tbody>
+          <tr><td>1</td><td><strong>HOOK</strong> — grab attention</td></tr>
+          <tr><td>2</td><td><strong>PROBLEM</strong> — real pain</td></tr>
+          <tr><td>3</td><td><strong>SOLUTION</strong> — no jargon</td></tr>
+          <tr><td>4</td><td><strong>VALUE PROPOSITION</strong> — why different</td></tr>
+          <tr><td>5</td><td><strong>MARKET / TRACTION</strong></td></tr>
+          <tr><td>6</td><td><strong>CALL TO ACTION</strong> — specific ask</td></tr>
+        </tbody></table>
+        <h2>Common mistakes</h2>
+        <ul>
+          <li>Speaking too fast / monotone</li>
+          <li>Jumping into solution without problem</li>
+          <li>Using jargon</li>
+          <li>No clear CTA</li>
+          <li>Sounding robotic</li>
+        </ul>
+        <h2>Hero's Journey</h2>
+        <ol>
+          <li>Initial situation</li>
+          <li>Conflict</li>
+          <li>Solution (your product as ally)</li>
+          <li>Resolution</li>
+        </ol>
+        <div class="callout key"><strong>The user is the hero. You are the guide.</strong></div>
+      </div>
+      <div class="tab-panel" id="t8-sum">
+        <h2>Quick recap</h2>
+        <div class="sum-grid">
+          <div class="sum-card"><div class="sum-label">Length</div><div class="sum-value">30-90 sec</div></div>
+          <div class="sum-card"><div class="sum-label">Goal</div><div class="sum-value">Next conversation</div></div>
+          <div class="sum-card"><div class="sum-label">Structure</div><div class="sum-value">6 parts</div></div>
+          <div class="sum-card"><div class="sum-label">Hero</div><div class="sum-value">The user</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FLASHCARDS ====== -->
+    <section class="panel" id="flashcards">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Practice</div>
+        <h1 class="panel-title">🃏 Flashcards</h1>
+        <p class="panel-subtitle">Click a card to flip · Mark as known or needs review</p>
+      </div>
+      <div class="fc-controls">
+        <div class="fc-controls-left">
+          <select class="fc-select" id="fc-filter" onchange="loadFlashcards()">
+            <option value="all">All topics</option>
+            <option value="t1">Topic 1</option><option value="t2">Topic 2</option><option value="t3">Topic 3</option><option value="t4">Topic 4</option>
+            <option value="t5">Topic 5</option><option value="t6">Topic 6</option><option value="t7">Topic 7</option><option value="t8">Topic 8</option>
+            <option value="review">⚠ Needs review only</option>
+          </select>
+          <button class="btn" onclick="shuffleFC()">🔀 Shuffle</button>
+          <button class="btn" onclick="resetFCProgress()">↺ Reset</button>
+        </div>
+        <div class="fc-controls-right">
+          <span class="fc-counter" id="fc-counter">— / —</span>
+        </div>
+      </div>
+      <div class="fc-stats">
+        <div class="stat">✓ Known: <strong id="fc-known">0</strong></div>
+        <div class="stat">↻ Needs review: <strong id="fc-review">0</strong></div>
+        <div class="stat">Total: <strong id="fc-total">0</strong></div>
+      </div>
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="fc-topic" id="fc-card-topic"></div>
+        <div class="fc-question" id="fc-card-content"></div>
+        <div class="fc-hint" id="fc-card-hint">Click to flip</div>
+      </div>
+      <div class="fc-nav">
+        <button class="btn" onclick="prevCard()">← Previous</button>
+        <div class="fc-actions">
+          <button class="btn danger" onclick="markCard('review')">↻ Review</button>
+          <button class="btn success" onclick="markCard('known')">✓ I know it</button>
+        </div>
+        <button class="btn" onclick="nextCard()">Next →</button>
+      </div>
+    </section>
+
+    <!-- ====== QUIZ ====== -->
+    <section class="panel" id="quiz">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Practice</div>
+        <h1 class="panel-title">🧠 Quiz Mode</h1>
+        <p class="panel-subtitle">Multiple-choice with instant feedback</p>
+      </div>
+      <div id="quiz-setup">
+        <div class="quiz-intro">
+          <h2 style="margin-top:0">Set up your quiz</h2>
+          <p>Pick a topic (or all) and how many questions. You get an explanation after each answer.</p>
+          <div class="quiz-launchers">
+            <select class="fc-select" id="quiz-topic">
+              <option value="all">All topics</option>
+              <option value="t1">Topic 1 · Introduction</option><option value="t2">Topic 2 · Frameworks</option>
+              <option value="t3">Topic 3 · 5 Phases</option><option value="t4">Topic 4 · Empathy</option>
+              <option value="t5">Topic 5 · Ideation</option><option value="t6">Topic 6 · Business Model</option>
+              <option value="t7">Topic 7 · MVP</option><option value="t8">Topic 8 · Pitch</option>
+            </select>
+            <select class="fc-select" id="quiz-count">
+              <option value="5">5 questions</option><option value="10" selected>10 questions</option>
+              <option value="15">15 questions</option><option value="20">20 questions</option>
+            </select>
+            <button class="btn primary" onclick="startQuiz()">Start Quiz →</button>
+          </div>
+        </div>
+        <div id="best-scores"></div>
+      </div>
+      <div id="quiz-active" style="display:none">
+        <div class="quiz-bar">
+          <div><div class="score" id="quiz-score">0 / 0</div><div class="score-lbl">Correct</div></div>
+          <div class="bar-track"><div class="bar-fill" id="quiz-bar-fill" style="width:0%"></div></div>
+          <button class="btn" onclick="endQuiz()">End</button>
+        </div>
+        <div id="quiz-questions"></div>
+        <div id="quiz-final" style="display:none"></div>
+      </div>
+    </section>
+
+    <!-- ====== MOCK EXAM ====== -->
+    <section class="panel" id="mock">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Practice</div>
+        <h1 class="panel-title">📝 Mock Exam</h1>
+        <p class="panel-subtitle">Full simulation · 20 MCQ + 2 open · Timed · 60% weight</p>
+      </div>
+      <div id="mock-setup">
+        <div class="mock-intro">
+          <h2>Ready for the real thing?</h2>
+          <p>20 random multiple-choice + 2 open questions, 50 minutes. After submission you get full feedback, a 0-10 grade, and sample answers.</p>
+          <div class="specs">
+            <div class="spec"><strong>20</strong> Multiple choice</div>
+            <div class="spec"><strong>2</strong> Open questions</div>
+            <div class="spec"><strong>50</strong> Minutes</div>
+            <div class="spec"><strong>5/10</strong> Pass mark</div>
+          </div>
+          <button class="btn" onclick="startMock()">Start Mock Exam →</button>
+        </div>
+      </div>
+      <div id="mock-active" style="display:none">
+        <div class="timer-bar">
+          <div><span class="time" id="mock-time">50:00</span> <span class="score-lbl">Time left</span></div>
+          <div class="progress" id="mock-progress">0 / 22 answered</div>
+          <button class="btn danger" onclick="submitMock()">Submit now</button>
+        </div>
+        <h2>Multiple choice</h2>
+        <div id="mock-mcq"></div>
+        <h2 style="margin-top:30px">Open questions</h2>
+        <p style="font-size:.85rem;color:var(--ink-soft)">Aim for 3-5 paragraphs each. After submission you'll see sample answers.</p>
+        <div id="mock-open"></div>
+        <div style="text-align:center;margin-top:24px">
+          <button class="btn primary" onclick="submitMock()" style="padding:12px 32px;font-size:.95rem">Submit Mock Exam</button>
+        </div>
+      </div>
+      <div id="mock-results" style="display:none"></div>
+    </section>
+
+    <div class="footer-note">
+      Design Thinking Study Hub · Exam Friday May 29, 2026 · CUNEF Universidad
+    </div>
+  </main>
+</div>
+
+<!-- TERM MODAL -->
+<div class="term-overlay" id="term-overlay" onclick="closeTerm(event)">
+  <div class="term-modal" onclick="event.stopPropagation()">
+    <div class="term-modal-head">
+      <div class="term-cat" id="term-cat">Concept</div>
+      <h3 id="term-title">Term</h3>
+      <button class="term-modal-close" onclick="closeTerm()">✕</button>
+    </div>
+    <div class="term-modal-body" id="term-body"></div>
+  </div>
+</div>
+
+<!-- AI CHAT -->
+<button class="ai-fab" id="ai-fab" onclick="openAI()" title="Study with Claude">✨</button>
+<div class="ai-panel" id="ai-panel">
+  <div class="ai-header">
+    <div>
+      <div class="ai-header-title">✨ Study with Claude</div>
+      <div class="ai-header-sub" id="ai-topic-context">Home</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="ai-close" id="ai-settings-btn" onclick="setApiKey()" title="API key settings">⚙</button>
+      <button class="ai-close" onclick="closeAI()">✕</button>
+    </div>
+  </div>
+  <div class="ai-context-pill">📚 I know what topic you're on — context-aware</div>
+  <div class="ai-quick">
+    <button class="ai-quick-btn" onclick="quickPrompt('Quiz me on this topic with 5 multiple choice questions, correcting each.')">🧠 Quiz me</button>
+    <button class="ai-quick-btn" onclick="quickPrompt('Explain this topic as if I were a beginner, with a real example.')">👶 Simpler</button>
+    <button class="ai-quick-btn" onclick="quickPrompt('Give me a memorable example or analogy for this topic.')">💡 Example</button>
+    <button class="ai-quick-btn" onclick="quickPrompt('Write a sample open-question exam answer for this topic.')">✍️ Sample answer</button>
+    <button class="ai-quick-btn" onclick="quickPrompt('What are the most likely exam questions for this topic?')">📝 Likely Qs</button>
+  </div>
+  <div class="ai-messages" id="ai-messages">
+    <div class="msg-welcome" id="ai-welcome">
+      <span class="emoji">✨</span>
+      <strong>Hi Francisco — let's study.</strong><br>
+      Ask anything or use the quick buttons.
+    </div>
+  </div>
+  <div class="ai-input-wrap">
+    <textarea class="ai-input" id="ai-input" placeholder="Ask Claude…" rows="1" onkeydown="handleKey(event)"></textarea>
+    <button class="ai-send" id="ai-send" onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+<script>
+// ============ DATA ============
+const FLASHCARDS = [
+  {t:'t1', q:"What are the 3 lenses of Design Thinking?", a:"<strong>Desirability</strong> (does the user want it?), <strong>Feasibility</strong> (can we build it?), <strong>Viability</strong> (is it profitable?). 4th modern: <strong>Responsibility</strong>."},
+  {t:'t1', q:"DT = Process + ___ ?", a:"<strong>Mindset.</strong> Saying it's only a 5-phase process is incomplete."},
+  {t:'t1', q:"Who founded IDEO and is the father of DT?", a:"<strong>David Kelley</strong> (founder of IDEO) and <strong>Tim Brown</strong>. Stanford's d.school systematized the 5 phases."},
+  {t:'t1', q:"Empathy vs Sympathy in DT?", a:"<strong>Empathy</strong> = feeling WITH the user (from inside). <strong>Sympathy</strong> = feeling FOR them (from outside, often pity)."},
+  {t:'t1', q:"Name the 7 mindset attitudes of a design thinker.", a:"1. Radical curiosity · 2. Empathy · 3. Embrace ambiguity · 4. Bias toward action · 5. Learning from failure · 6. Collaboration · 7. Creative optimism."},
+  {t:'t2', q:"What does VUCA stand for?", a:"<strong>V</strong>olatile, <strong>U</strong>ncertain, <strong>C</strong>omplex, <strong>A</strong>mbiguous (1990s)."},
+  {t:'t2', q:"What does BANI stand for?", a:"<strong>B</strong>rittle, <strong>A</strong>nxious, <strong>N</strong>onlinear, <strong>I</strong>ncomprehensible. Post-pandemic, adds emotional impact."},
+  {t:'t2', q:"Who wrote 'The Lean Startup'?", a:"<strong>Eric Ries.</strong>"},
+  {t:'t2', q:"DT · Lean · Agile — central artifact?", a:"<strong>DT → Prototype · Lean → MVP · Agile → Sprint.</strong>"},
+  {t:'t2', q:"What does DT always start by asking?", a:"\"Does the user need or want this?\" — <strong>Desirability</strong>."},
+  {t:'t3', q:"Name the 5 phases of Design Thinking.", a:"1. Empathize → 2. Define → 3. Ideate → 4. Prototype → 5. Test. <strong>Non-linear, iterative.</strong>"},
+  {t:'t3', q:"Which phases are divergent vs convergent?", a:"<strong>Divergent</strong>: 1 and 3. <strong>Convergent</strong>: 2, 4, 5."},
+  {t:'t3', q:"What is HMW and where is it used?", a:"<strong>How Might We</strong> — bridge between Define and Ideate."},
+  {t:'t3', q:"Is the DT process linear or iterative?", a:"<strong>Iterative and non-linear.</strong>"},
+  {t:'t4', q:"What are the 6 quadrants of the Empathy Map?", a:"Think & Feel · See · Hear · Say & Do · Pains · Gains."},
+  {t:'t4', q:"What is the golden rule of User Personas?", a:"Must be based on <strong>real research</strong> — never imagination."},
+  {t:'t4', q:"What is the 5 Whys rule?", a:"Ask \"why?\" 5 times to reach the root cause."},
+  {t:'t4', q:"Primary vs Secondary research?", a:"<strong>Primary</strong> = you collect it. <strong>Secondary</strong> = existing data."},
+  {t:'t5', q:"What are Osborn's 4 rules of brainstorming?", a:"Quantity · No criticism · Combine and improve · Wild ideas welcome. (Osborn, 1953)"},
+  {t:'t5', q:"What does SCAMPER stand for?", a:"<strong>S</strong>ubstitute · <strong>C</strong>ombine · <strong>A</strong>dapt · <strong>M</strong>odify · <strong>P</strong>ut to other uses · <strong>E</strong>liminate · <strong>R</strong>everse."},
+  {t:'t5', q:"How many ideas in Brainwriting 6-3-5?", a:"<strong>108 ideas in 30 minutes.</strong>"},
+  {t:'t5', q:"What are Crazy 8s?", a:"8 different ideas sketched in 8 minutes (1 min each)."},
+  {t:'t6', q:"How many blocks does the BMC have?", a:"<strong>9 blocks</strong> (Osterwalder, 2010)."},
+  {t:'t6', q:"What are the 6 elements of the VPC?", a:"<strong>Customer Profile</strong>: Jobs, Pains, Gains. <strong>Value Map</strong>: Products, Pain Relievers, Gain Creators."},
+  {t:'t6', q:"What is Product-Market Fit?", a:"When the Value Map fits perfectly with the Customer Profile."},
+  {t:'t6', q:"What is the Build-Measure-Learn cycle?", a:"<strong>Build</strong> the smallest experiment → <strong>Measure</strong> metrics → <strong>Learn</strong>: confirm or pivot?"},
+  {t:'t6', q:"What is a Pivot in Lean Startup?", a:"Change of strategy while <strong>keeping the accumulated learning</strong>. NOT failure."},
+  {t:'t7', q:"Prototype vs MVP?", a:"<strong>Prototype</strong> = built to learn. <strong>MVP</strong> = real working product with min features."},
+  {t:'t7', q:"What are the 5 types of MVP?", a:"Landing page · Concierge (Airbnb) · Wizard of Oz · Explainer video (Dropbox) · Functional prototype."},
+  {t:'t7', q:"PoC vs MVP?", a:"<strong>PoC</strong> = tech possible? <strong>MVP</strong> = market exists?"},
+  {t:'t7', q:"What does 'fail fast, fail cheap' mean?", a:"Better to fail with a €50 prototype than with a €500,000 product."},
+  {t:'t8', q:"6-part Elevator Pitch structure?", a:"<strong>Hook → Problem → Solution → VP → Market → CTA.</strong>"},
+  {t:'t8', q:"How long is an Elevator Pitch?", a:"<strong>30-90 seconds.</strong> Goal: earn next conversation."},
+  {t:'t8', q:"Who is the hero of the pitch story?", a:"<strong>The user.</strong> You are the guide."}
+];
+
+const QUIZ_QS = [
+  {t:'t1', q:"Which is the most complete definition of DT?", a:"A human-centered methodology combining an iterative 5-phase process with a mindset", w:["A strict 5-step process","A method to maximize business profit","A brainstorming technique"], exp:"DT is BOTH a process AND a mindset."},
+  {t:'t1', q:"Which is NOT one of the 3 lenses of DT?", a:"Profitability", w:["Desirability","Feasibility","Viability"], exp:"3 lenses: Desirability, Feasibility, Viability. Profitability is a classic distractor."},
+  {t:'t1', q:"Empathy in DT is best described as...", a:"Feeling WITH the user — understanding from inside", w:["Feeling sorry from a distance","Imagining how user would feel based on assumptions","Asking via a survey"], exp:"Empathy = feeling WITH. Sympathy = feeling FOR."},
+  {t:'t1', q:"Which is one of the 7 mindset attitudes?", a:"Bias toward action", w:["Perfectionism","Risk avoidance","Hierarchical decisions"], exp:"Perfectionism contradicts 'fail fast, fail cheap'."},
+  {t:'t1', q:"Who popularized DT?", a:"David Kelley and Tim Brown (IDEO)", w:["Eric Ries","Alexander Osterwalder","Clayton Christensen"], exp:"IDEO popularized DT; Stanford d.school systematized the 5 phases."},
+  {t:'t2', q:"What does BANI stand for?", a:"Brittle, Anxious, Nonlinear, Incomprehensible", w:["Bold, Agile, Networked, Iterative","Build, Adapt, Navigate, Implement","Broad, Ambiguous, Nonlinear, Innovative"], exp:"BANI complements VUCA with emotional impact."},
+  {t:'t2', q:"Which methodology asks 'Is there a market for this?'", a:"Lean Startup", w:["Design Thinking","Agile","Six Sigma"], exp:"Lean Startup validates the business model."},
+  {t:'t2', q:"Central artifact of DT?", a:"The prototype", w:["The MVP","The sprint","The pitch deck"], exp:"DT → Prototype · Lean → MVP · Agile → Sprint."},
+  {t:'t2', q:"Eric Ries wrote which book?", a:"The Lean Startup", w:["Change by Design","Business Model Generation","The Innovator's Dilemma"], exp:"Eric Ries → Lean Startup."},
+  {t:'t2', q:"DT always starts by asking...", a:"Does the user need or want this?", w:["Is this profitable?","Can we build this?","Is this legal?"], exp:"DT starts with desirability."},
+  {t:'t2', q:"What is the C in VUCA?", a:"Complexity", w:["Confidence","Collaboration","Creativity"], exp:"VUCA = Volatile, Uncertain, Complex, Ambiguous."},
+  {t:'t3', q:"The 5 phases of DT are...", a:"Non-linear and iterative", w:["A strict 5-step checklist","A one-time process","Linear first, then iterative"], exp:"Iterative by design."},
+  {t:'t3', q:"Which phases are divergent?", a:"Empathize and Ideate (1 and 3)", w:["Define and Prototype","Ideate and Test","Empathize and Define"], exp:"Divergent = 1 and 3. Convergent = 2, 4, 5."},
+  {t:'t3', q:"HMW bridges which phases?", a:"Define and Ideate", w:["Empathize and Define","Ideate and Prototype","Prototype and Test"], exp:"HMW ends Define, starts Ideate."},
+  {t:'t3', q:"User says 'I love this app' but looks frustrated. Trust...", a:"Observed behavior — actions over words", w:["Their verbal report","Discard the data","A follow-up survey"], exp:"People don't always say what they mean."},
+  {t:'t3', q:"During Ideate, what should you NOT do?", a:"Judge ideas while generating them", w:["Build on others' ideas","Generate as many as possible","Welcome wild ideas"], exp:"Generate first, evaluate later."},
+  {t:'t4', q:"The Empathy Map has how many quadrants?", a:"6", w:["4","8","9"], exp:"6 sections: Think/Feel, See, Hear, Say/Do, Pains, Gains."},
+  {t:'t4', q:"A User Persona must be based on...", a:"Real observations and research", w:["Team intuition","Industry reports","Founder assumptions"], exp:"Based on real research, never imagination."},
+  {t:'t4', q:"Which is a GOOD interview question?", a:"'Tell me about the last time this problem happened.'", w:["'Would you pay €10?'","'Don't you find this frustrating?'","'On a scale of 1-10…'"], exp:"Behavioral, open, story-unlocking."},
+  {t:'t4', q:"What is the '5 Whys' rule?", a:"Ask 'why?' five times to reach the root cause", w:["Limit each interview to 5 'why' questions","Ask why every 5 minutes","Use 5 different ways of asking why"], exp:"From Toyota's manufacturing."},
+  {t:'t5', q:"Osborn's 4 rules do NOT include...", a:"Filter weak ideas early to save time", w:["Quantity over quality","No criticism","Wild ideas welcome"], exp:"Filtering happens AFTER divergent ideation."},
+  {t:'t5', q:"In Brainwriting 6-3-5, how many ideas?", a:"108 ideas in 30 minutes", w:["18 in 30 min","30 in 18 min","60 in 30 min"], exp:"6 × 3 × 6 rotations = 108."},
+  {t:'t5', q:"SCAMPER is used in which phase?", a:"Ideate", w:["Empathize","Define","Test"], exp:"SCAMPER transforms existing ideas."},
+  {t:'t5', q:"In SCAMPER, what does 'R' stand for?", a:"Reverse / Rearrange", w:["Refine","Research","Repeat"], exp:"R = flipping or reorganizing."},
+  {t:'t6', q:"How many blocks does the BMC have?", a:"9", w:["6","12","4"], exp:"BMC has 9 blocks (Osterwalder, 2010)."},
+  {t:'t6', q:"In the VPC, the Customer Profile includes...", a:"Jobs to be done, Pains, Gains", w:["Products, Services, Channels","Pain Relievers, Gain Creators, Products","Demographics, Behavior, Goals"], exp:"Customer Profile = Jobs/Pains/Gains."},
+  {t:'t6', q:"A 'pivot' means...", a:"Changing strategy while keeping the learning", w:["Abandoning the idea","Repeating the experiment","Doubling investment"], exp:"Pivot is adaptation, not failure."},
+  {t:'t6', q:"Who created the BMC?", a:"Alexander Osterwalder", w:["Eric Ries","Tim Brown","Clayton Christensen"], exp:"Osterwalder → BMC and VPC (2010)."},
+  {t:'t6', q:"After MEASURE comes...", a:"Learn", w:["Iterate","Pivot","Validate"], exp:"Build → Measure → Learn."},
+  {t:'t7', q:"PoC vs MVP — key difference?", a:"PoC tests tech feasibility; MVP tests market", w:["PoC for hardware, MVP for software","MVP comes before PoC","They are the same"], exp:"PoC = 'can we?'. MVP = 'will market want it?'"},
+  {t:'t7', q:"Dropbox used which type of MVP?", a:"Explainer video MVP", w:["Concierge MVP","Wizard of Oz MVP","Landing page MVP"], exp:"Dropbox validated demand with a video."},
+  {t:'t7', q:"Prototype vs MVP?", a:"Prototype = to learn; MVP = real working product", w:["MVPs are paper sketches","They are synonyms","Prototypes come AFTER the MVP"], exp:"Prototype = learning tool. MVP = real product, must work."},
+  {t:'t7', q:"Which is NOT a key prototyping principle?", a:"Build to impress investors", w:["Fail fast, fail cheap","Show, don't tell","One question, one prototype"], exp:"Build to learn, not impress."},
+  {t:'t8', q:"Elevator Pitch structure?", a:"Hook → Problem → Solution → VP → Market → CTA", w:["Intro → Body → Conclusion","Problem → Solution → Price → Close","Story → Stats → Demo → Ask"], exp:"6 parts in this exact order."},
+  {t:'t8', q:"In pitch storytelling, who is the hero?", a:"The user / customer", w:["The startup","The investor","The product"], exp:"User is hero. You are the guide."},
+  {t:'t8', q:"Typical Elevator Pitch length?", a:"30-90 seconds", w:["5-10 minutes","10-15 minutes","Under 10 seconds"], exp:"Like an elevator ride."},
+  {t:'t8', q:"Common pitch mistake?", a:"Using technical jargon", w:["Starting with a hook","Defining the problem","Ending with CTA"], exp:"Jargon loses non-technical listeners."}
+];
+
+const OPEN_QS = [
+  {q:"Explain the differences and complementarities between Design Thinking, Lean Startup and Agile. In which phase of product development would you use each?",
+   sample:"Design Thinking, Lean Startup and Agile are three complementary methodologies, each focused on a different stage of innovation.\n\nDesign Thinking (Brown/Kelley, IDEO) is human-centered and asks 'are we solving the right problem?'. Central artifact: prototype. Used at the START — exploration and problem definition.\n\nLean Startup (Eric Ries) asks 'is there a market?'. Artifact: MVP. Loop: Build–Measure–Learn. Used in the MIDDLE — validating the business model.\n\nAgile (Agile Manifesto) asks 'are we building it well?'. Artifact: Sprint. Used at the END — efficient construction.\n\nUsed in SEQUENCE: DT defines the problem → Lean validates → Agile builds. Example: a startup uses DT to find pain points, Lean to test pricing with a landing page MVP, Agile to ship v1 in 2-week sprints."},
+  {q:"A design team has identified that university students struggle to manage their time. Describe how you'd apply the full Design Thinking process to develop a solution, naming the tools you'd use in each phase.",
+   sample:"Following the 5 iterative phases of DT:\n\n1. EMPATHIZE — Goal: understand the real problem. Tools: in-depth interviews with 8-10 students, ethnographic observation in libraries, shadowing one student for a full day.\n\n2. DEFINE — Goal: identify the right problem. Tools: synthesis via Empathy Map and User Persona. POV: '[Student] needs [clear deadline visibility] because [each subject uses different platforms].' Then HMW: 'How might we help students see all deadlines in one place?'\n\n3. IDEATE — Goal: generate solutions. Tools: Brainwriting 6-3-5 (108 ideas in 30 min), SCAMPER. Filter with Impact/Effort matrix and dot voting.\n\n4. PROTOTYPE — Goal: build to learn. Tools: paper wireframes, then Figma mockup. Low fidelity. Test one key question at a time.\n\n5. TEST — Goal: validate. Tools: 5-7 usability tests with real students. Observe in silence.\n\nIteration: if students don't trust the aggregator, return to Empathize. DT is non-linear."},
+  {q:"What is a value proposition and how does it relate to the BMC and the VPC? Give an example.",
+   sample:"A value proposition is the bundle of products/services that creates value for a specific customer segment — the answer to 'why would the customer choose us?'.\n\nIn the BMC (Osterwalder, 2010) the Value Proposition is block #2 — the heart of the canvas, connecting Customer Segments with the rest.\n\nThe VPC expands this block in detail. Two sides:\n• Customer Profile — Jobs, Pains, Gains.\n• Value Map — Products & Services, Pain Relievers, Gain Creators.\n\nProduct-Market Fit = when both sides match.\n\nExample — Spotify: Customer Profile: Jobs = listen to music anywhere; Pains = building playlists is tedious; Gains = personalized discovery. Value Map: Products = streaming + offline; Pain Relievers = automated playlists; Gain Creators = Discover Weekly. The fit explains Spotify's success."},
+  {q:"Explain what an MVP is, the different types, and how it differs from a Proof of Concept. Use a real example.",
+   sample:"An MVP (Minimum Viable Product, Eric Ries) is the simplest version of a product that allows maximum validated learning with minimum effort. It must WORK (even if manually). Collects real feedback from early adopters.\n\nFive main types:\n1. Landing page MVP — measures interest.\n2. Concierge MVP — manual service first (early Airbnb).\n3. Wizard of Oz MVP — looks automated, humans behind.\n4. Explainer video MVP — Dropbox classic.\n5. Functional prototype.\n\nA Proof of Concept tests if something is TECHNICALLY possible, not the market. Internal audience. PoC comes BEFORE the MVP if technical doubt exists.\n\nExample: Tesla had to first prove batteries could power a sports car — that was the PoC. The Roadster itself was the MVP for the electric vehicle market."}
+];
+
+// ============ STATE ============
+let topicStatuses = JSON.parse(localStorage.getItem('dt_topic_status') || '{}');
+let fcKnown = JSON.parse(localStorage.getItem('dt_fc_known') || '{}');
+let fcReview = JSON.parse(localStorage.getItem('dt_fc_review') || '{}');
+let bestScores = JSON.parse(localStorage.getItem('dt_best_scores') || '{}');
+let fcDeck = [];
+let fcIndex = 0;
+let fcFlipped = false;
+let quizState = { qs: [], idx: 0, correct: 0, answered: 0, topic: 'all' };
+let mockState = { mcq: [], openAnswers: ['',''], openQs: [], startTime: 0, timer: null, submitted: false };
+
+// ============ NAV ============
+function navTo(panel) {
+  const btn = document.querySelector(`.nav-btn[data-panel="${panel}"]`);
+  if (btn) btn.click();
+}
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (e.target.classList.contains('status-dot')) return;
+    const panel = btn.dataset.panel;
+    if (!panel) return;
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(panel).classList.add('active');
+    const p = document.getElementById(panel);
+    if (p.querySelector('.tab-btn')) {
+      p.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      p.querySelectorAll('.tab-panel').forEach(t => t.classList.remove('active'));
+      p.querySelector('.tab-btn').classList.add('active');
+      p.querySelector('.tab-panel').classList.add('active');
+    }
+    document.querySelector('.sidebar').classList.remove('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateAITopicContext();
+    if (panel === 'flashcards') loadFlashcards();
+    if (panel === 'quiz') showBestScores();
+  });
+});
+document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tabId = btn.dataset.tab;
+    const parent = btn.closest('.panel');
+    parent.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    parent.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+  });
+});
+
+// ============ PROGRESS ============
+function cycleStatus(e, topicId) {
+  e.stopPropagation();
+  const cur = topicStatuses[topicId] || 'none';
+  const order = ['none', 'review', 'done'];
+  const next = order[(order.indexOf(cur) + 1) % order.length];
+  topicStatuses[topicId] = next;
+  localStorage.setItem('dt_topic_status', JSON.stringify(topicStatuses));
+  renderStatuses();
+}
+function renderStatuses() {
+  for (let i = 1; i <= 8; i++) {
+    const id = 't' + i;
+    const dot = document.querySelector('[data-status-for="' + id + '"]');
+    if (dot) {
+      dot.classList.remove('done', 'review');
+      const s = topicStatuses[id];
+      if (s === 'done') dot.classList.add('done');
+      else if (s === 'review') dot.classList.add('review');
+    }
+    const tileStatus = document.querySelector('[data-tile-status="' + id + '"]');
+    if (tileStatus) {
+      tileStatus.classList.remove('done', 'review');
+      const s = topicStatuses[id];
+      if (s === 'done') { tileStatus.textContent = '✓ Done'; tileStatus.classList.add('done'); }
+      else if (s === 'review') { tileStatus.textContent = '↻ Needs review'; tileStatus.classList.add('review'); }
+      else { tileStatus.textContent = '○ Not started'; }
+    }
+  }
+  const done = Object.values(topicStatuses).filter(s => s === 'done').length;
+  document.getElementById('progress-label').textContent = done + ' / 8';
+  document.getElementById('progress-fill').style.width = (done / 8 * 100) + '%';
+  const heroDone = document.getElementById('hero-done');
+  if (heroDone) heroDone.textContent = done;
+}
+
+// ============ FLASHCARDS ============
+function loadFlashcards() {
+  const filter = document.getElementById('fc-filter').value;
+  if (filter === 'review') fcDeck = FLASHCARDS.filter(c => fcReview[c.q]);
+  else if (filter === 'all') fcDeck = [...FLASHCARDS];
+  else fcDeck = FLASHCARDS.filter(c => c.t === filter);
+  fcIndex = 0; fcFlipped = false;
+  renderFC();
+  updateFCStats();
+}
+function shuffleFC() {
+  for (let i = fcDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]];
+  }
+  fcIndex = 0; fcFlipped = false;
+  renderFC();
+}
+function renderFC() {
+  if (fcDeck.length === 0) {
+    document.getElementById('fc-card-content').innerHTML = 'No flashcards in this set.';
+    document.getElementById('fc-card-topic').textContent = '';
+    document.getElementById('fc-card-hint').textContent = '';
+    document.getElementById('fc-counter').textContent = '0 / 0';
+    return;
+  }
+  const card = fcDeck[fcIndex];
+  const topicName = { t1:'Topic 1', t2:'Topic 2', t3:'Topic 3', t4:'Topic 4', t5:'Topic 5', t6:'Topic 6', t7:'Topic 7', t8:'Topic 8' }[card.t];
+  document.getElementById('fc-card-topic').textContent = topicName;
+  const el = document.getElementById('fc-card-content');
+  if (fcFlipped) {
+    el.className = 'fc-answer';
+    el.innerHTML = card.a;
+    document.getElementById('fc-card-hint').textContent = 'Click to see question again';
+  } else {
+    el.className = 'fc-question';
+    el.textContent = card.q;
+    document.getElementById('fc-card-hint').textContent = 'Click to reveal answer';
+  }
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + fcDeck.length;
+}
+function flipCard() { fcFlipped = !fcFlipped; renderFC(); }
+function nextCard() { if (fcDeck.length === 0) return; fcIndex = (fcIndex + 1) % fcDeck.length; fcFlipped = false; renderFC(); }
+function prevCard() { if (fcDeck.length === 0) return; fcIndex = (fcIndex - 1 + fcDeck.length) % fcDeck.length; fcFlipped = false; renderFC(); }
+function markCard(type) {
+  if (fcDeck.length === 0) return;
+  const card = fcDeck[fcIndex];
+  if (type === 'known') { fcKnown[card.q] = true; delete fcReview[card.q]; }
+  else if (type === 'review') { fcReview[card.q] = true; delete fcKnown[card.q]; }
+  localStorage.setItem('dt_fc_known', JSON.stringify(fcKnown));
+  localStorage.setItem('dt_fc_review', JSON.stringify(fcReview));
+  updateFCStats();
+  nextCard();
+}
+function updateFCStats() {
+  document.getElementById('fc-known').textContent = Object.keys(fcKnown).length;
+  document.getElementById('fc-review').textContent = Object.keys(fcReview).length;
+  document.getElementById('fc-total').textContent = FLASHCARDS.length;
+}
+function resetFCProgress() {
+  if (!confirm('Reset all flashcard progress?')) return;
+  fcKnown = {}; fcReview = {};
+  localStorage.removeItem('dt_fc_known');
+  localStorage.removeItem('dt_fc_review');
+  updateFCStats();
+  loadFlashcards();
+}
+
+// ============ QUIZ ============
+function shuffle(a) {
+  const r = [...a];
+  for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; }
+  return r;
+}
+function startQuiz() {
+  const topic = document.getElementById('quiz-topic').value;
+  const count = parseInt(document.getElementById('quiz-count').value);
+  const pool = topic === 'all' ? QUIZ_QS : QUIZ_QS.filter(q => q.t === topic);
+  if (pool.length === 0) { alert('No questions for this topic'); return; }
+  const picked = shuffle(pool).slice(0, Math.min(count, pool.length));
+  quizState = {
+    qs: picked.map(q => { const opts = shuffle([q.a, ...q.w]); return { ...q, opts, correct: opts.indexOf(q.a) }; }),
+    idx: 0, correct: 0, answered: 0, topic
+  };
+  document.getElementById('quiz-setup').style.display = 'none';
+  document.getElementById('quiz-active').style.display = 'block';
+  document.getElementById('quiz-final').style.display = 'none';
+  document.getElementById('quiz-final').innerHTML = '';
+  renderQuiz();
+}
+function renderQuiz() {
+  document.getElementById('quiz-questions').innerHTML = quizState.qs.map((q, i) =>
+    `<div class="qcard">
+      <div class="q-num">Question ${i + 1} of ${quizState.qs.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts">${q.opts.map((o, j) => `<button class="qopt" id="qo${i}_${j}" onclick="answerQuiz(${i},${j})">${o}</button>`).join('')}</div>
+      <div class="q-exp" id="qe${i}">💡 ${q.exp}</div>
+    </div>`).join('');
+  updateQuizBar();
+}
+function answerQuiz(qi, oi) {
+  const q = quizState.qs[qi];
+  document.querySelectorAll(`[id^="qo${qi}_"]`).forEach(b => b.disabled = true);
+  document.getElementById(`qo${qi}_${q.correct}`).classList.add('correct');
+  if (oi !== q.correct) document.getElementById(`qo${qi}_${oi}`).classList.add('wrong');
+  else quizState.correct++;
+  quizState.answered++;
+  document.getElementById(`qe${qi}`).classList.add('show');
+  updateQuizBar();
+  if (quizState.answered === quizState.qs.length) setTimeout(showQuizFinal, 400);
+}
+function updateQuizBar() {
+  document.getElementById('quiz-score').textContent = quizState.correct + ' / ' + quizState.qs.length;
+  const pct = quizState.answered > 0 ? (quizState.correct / quizState.answered) * 100 : 0;
+  const fill = document.getElementById('quiz-bar-fill');
+  fill.style.width = (quizState.answered / quizState.qs.length * 100) + '%';
+  fill.style.background = pct >= 70 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--coral)';
+}
+function showQuizFinal() {
+  const pct = Math.round(quizState.correct / quizState.qs.length * 100);
+  const grade = (quizState.correct / quizState.qs.length * 10).toFixed(1);
+  const passed = pct >= 50;
+  const t = quizState.topic === 'all' ? 'all' : quizState.topic;
+  if (!bestScores[t] || pct > bestScores[t]) {
+    bestScores[t] = pct;
+    localStorage.setItem('dt_best_scores', JSON.stringify(bestScores));
+  }
+  document.getElementById('quiz-final').style.display = 'block';
+  document.getElementById('quiz-final').innerHTML = `
+    <div class="results-card">
+      <div class="big-score">${grade}<span style="font-size:1.5rem;color:var(--ink-light)"> / 10</span></div>
+      <div class="verdict ${passed ? 'pass' : 'fail'}">${passed ? '✓ Passed (≥5/10)' : '✗ Below pass mark'}</div>
+      <div class="stats-grid">
+        <div class="stat-tile"><strong>${quizState.correct}</strong>Correct</div>
+        <div class="stat-tile"><strong>${quizState.qs.length - quizState.correct}</strong>Wrong</div>
+        <div class="stat-tile"><strong>${pct}%</strong>Score</div>
+      </div>
+      <div style="margin-top:20px">
+        <button class="btn primary" onclick="restartQuiz()">Try again</button>
+        <button class="btn" onclick="endQuiz()">Back to setup</button>
+      </div>
+    </div>`;
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+function endQuiz() {
+  document.getElementById('quiz-active').style.display = 'none';
+  document.getElementById('quiz-setup').style.display = 'block';
+  showBestScores();
+}
+function restartQuiz() { startQuiz(); }
+function showBestScores() {
+  const keys = Object.keys(bestScores);
+  if (keys.length === 0) { document.getElementById('best-scores').innerHTML = ''; return; }
+  const labels = { all:'All topics', t1:'Topic 1', t2:'Topic 2', t3:'Topic 3', t4:'Topic 4', t5:'Topic 5', t6:'Topic 6', t7:'Topic 7', t8:'Topic 8' };
+  document.getElementById('best-scores').innerHTML = `
+    <h2 style="margin-top:30px;font-size:1.15rem">🏆 Your best scores</h2>
+    <div class="sum-grid">${keys.map(k => `<div class="sum-card"><div class="sum-label">${labels[k] || k}</div><div class="sum-value">${bestScores[k]}%</div></div>`).join('')}</div>`;
+}
+
+// ============ MOCK EXAM ============
+function startMock() {
+  mockState.mcq = shuffle(QUIZ_QS).slice(0, 20).map(q => { const opts = shuffle([q.a, ...q.w]); return { ...q, opts, correct: opts.indexOf(q.a), userAnswer: null }; });
+  mockState.openQs = shuffle(OPEN_QS).slice(0, 2);
+  mockState.openAnswers = ['', ''];
+  mockState.startTime = Date.now();
+  mockState.submitted = false;
+  document.getElementById('mock-setup').style.display = 'none';
+  document.getElementById('mock-active').style.display = 'block';
+  document.getElementById('mock-results').style.display = 'none';
+  document.getElementById('mock-mcq').innerHTML = mockState.mcq.map((q, i) => `
+    <div class="qcard">
+      <div class="q-num">Question ${i + 1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts">${q.opts.map((o, j) => `<button class="qopt" id="mcq${i}_${j}" onclick="answerMock(${i},${j})">${o}</button>`).join('')}</div>
+    </div>`).join('');
+  document.getElementById('mock-open').innerHTML = mockState.openQs.map((q, i) => `
+    <div class="open-q">
+      <div class="q-text"><strong>Open ${i + 1}.</strong> ${q.q}</div>
+      <textarea id="mock-open-${i}" placeholder="Write your answer (aim for 3-5 paragraphs)…" oninput="updateMockProgress()"></textarea>
+      <div class="open-q-sample" id="mock-open-sample-${i}">
+        <strong class="lbl">📋 Sample answer</strong>
+        ${(q.sample || '').replace(/\n/g, '<br>')}
+      </div>
+    </div>`).join('');
+  startMockTimer();
+  updateMockProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function startMockTimer() {
+  if (mockState.timer) clearInterval(mockState.timer);
+  const DURATION = 50 * 60 * 1000;
+  mockState.timer = setInterval(() => {
+    const elapsed = Date.now() - mockState.startTime;
+    const left = DURATION - elapsed;
+    if (left <= 0) { clearInterval(mockState.timer); if (!mockState.submitted) submitMock(); return; }
+    const m = Math.floor(left / 60000);
+    const s = Math.floor((left % 60000) / 1000);
+    const el = document.getElementById('mock-time');
+    el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    el.className = 'time' + (left < 5 * 60 * 1000 ? ' danger' : left < 15 * 60 * 1000 ? ' warn' : '');
+  }, 500);
+}
+function answerMock(qi, oi) {
+  if (mockState.submitted) return;
+  mockState.mcq[qi].userAnswer = oi;
+  document.querySelectorAll(`[id^="mcq${qi}_"]`).forEach(b => { b.style.background = ''; b.style.borderColor = ''; });
+  document.getElementById(`mcq${qi}_${oi}`).style.background = 'var(--orange-soft)';
+  document.getElementById(`mcq${qi}_${oi}`).style.borderColor = 'var(--orange)';
+  updateMockProgress();
+}
+function updateMockProgress() {
+  const ans = mockState.mcq.filter(q => q.userAnswer !== null).length;
+  const o0 = (document.getElementById('mock-open-0')?.value || '').trim().length > 30 ? 1 : 0;
+  const o1 = (document.getElementById('mock-open-1')?.value || '').trim().length > 30 ? 1 : 0;
+  document.getElementById('mock-progress').textContent = (ans + o0 + o1) + ' / 22 answered';
+}
+function submitMock() {
+  if (mockState.submitted) return;
+  if (!confirm('Submit your mock exam? You cannot change answers after this.')) return;
+  mockState.submitted = true;
+  clearInterval(mockState.timer);
+  let correct = 0;
+  mockState.mcq.forEach((q, i) => {
+    document.querySelectorAll(`[id^="mcq${i}_"]`).forEach(b => { b.disabled = true; b.style.background = ''; b.style.borderColor = ''; });
+    document.getElementById(`mcq${i}_${q.correct}`).classList.add('correct');
+    if (q.userAnswer !== null && q.userAnswer !== q.correct) document.getElementById(`mcq${i}_${q.userAnswer}`).classList.add('wrong');
+    if (q.userAnswer === q.correct) correct++;
+  });
+  mockState.openAnswers[0] = document.getElementById('mock-open-0').value;
+  mockState.openAnswers[1] = document.getElementById('mock-open-1').value;
+  document.getElementById('mock-open-sample-0').classList.add('show');
+  document.getElementById('mock-open-sample-1').classList.add('show');
+  document.getElementById('mock-open-0').disabled = true;
+  document.getElementById('mock-open-1').disabled = true;
+  const open0 = scoreOpen(mockState.openAnswers[0]);
+  const open1 = scoreOpen(mockState.openAnswers[1]);
+  const mcqScore = correct / 20;
+  const openScore = (open0 + open1) / 8;
+  const final = (mcqScore * 0.6 + openScore * 0.4) * 10;
+  const grade = final.toFixed(1);
+  const passed = final >= 5;
+  document.getElementById('mock-results').style.display = 'block';
+  document.getElementById('mock-results').innerHTML = `
+    <div class="results-card">
+      <div class="big-score">${grade}<span style="font-size:1.5rem;color:var(--ink-light)"> / 10</span></div>
+      <div class="verdict ${passed ? 'pass' : 'fail'}">${passed ? '✓ Passed' : '✗ Below pass mark'}</div>
+      <div class="stats-grid">
+        <div class="stat-tile"><strong>${correct}/20</strong>MCQ correct</div>
+        <div class="stat-tile"><strong>${open0}/4</strong>Open 1</div>
+        <div class="stat-tile"><strong>${open1}/4</strong>Open 2</div>
+        <div class="stat-tile"><strong>${Math.round((Date.now() - mockState.startTime) / 60000)} min</strong>Time used</div>
+      </div>
+      <p style="margin-top:16px;font-size:.85rem;color:var(--ink-soft)">Compare your open answers with the sample answers shown above.</p>
+      <div style="margin-top:16px"><button class="btn primary" onclick="resetMock()">New mock exam</button></div>
+    </div>`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function scoreOpen(t) {
+  if (!t) return 0;
+  const l = t.trim().length;
+  if (l < 50) return 0; if (l < 150) return 1; if (l < 300) return 2; if (l < 500) return 3; return 4;
+}
+function resetMock() {
+  document.getElementById('mock-active').style.display = 'none';
+  document.getElementById('mock-results').style.display = 'none';
+  document.getElementById('mock-setup').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============ AI CHAT ============
+function getActiveTopic() {
+  const topic = document.querySelector('.panel.active');
+  if (!topic) return { name: 'General', summary: '', id: '' };
+  return {
+    name: topic.dataset.topicName || (topic.querySelector('.panel-title')?.textContent || 'Home'),
+    summary: topic.dataset.topicSummary || '',
+    id: topic.id
+  };
+}
+function updateAITopicContext() {
+  document.getElementById('ai-topic-context').textContent = getActiveTopic().name;
+}
+function openAI() {
+  document.getElementById('ai-fab').classList.add('hidden');
+  document.getElementById('ai-panel').classList.add('open');
+  updateAITopicContext();
+  setTimeout(() => document.getElementById('ai-input').focus(), 250);
+}
+function closeAI() {
+  document.getElementById('ai-panel').classList.remove('open');
+  document.getElementById('ai-fab').classList.remove('hidden');
+}
+function extractText(resp) {
+  if (resp == null) return '';
+  if (typeof resp === 'string') return resp;
+  if (typeof resp === 'object') {
+    if (typeof resp.text === 'string') return resp.text;
+    if (typeof resp.content === 'string') return resp.content;
+    if (typeof resp.message === 'string') return resp.message;
+    if (typeof resp.response === 'string') return resp.response;
+    if (typeof resp.output === 'string') return resp.output;
+    if (Array.isArray(resp.content) && resp.content[0] && typeof resp.content[0].text === 'string') return resp.content[0].text;
+    try { return JSON.stringify(resp, null, 2); } catch(e) { return String(resp); }
+  }
+  return String(resp);
+}
+function addMsg(text, role) {
+  text = extractText(text);
+  const welcome = document.getElementById('ai-welcome');
+  if (welcome) welcome.remove();
+  const m = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  if (role === 'assistant') {
+    div.innerHTML = text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" style="color:var(--orange-dark);text-decoration:underline">$1</a>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`(.+?)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
+  } else { div.textContent = text; }
+  m.appendChild(div);
+  m.scrollTop = m.scrollHeight;
+}
+function addThinking() {
+  const m = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'msg thinking';
+  div.id = 'thinking-msg';
+  div.textContent = 'Claude is thinking';
+  m.appendChild(div);
+  m.scrollTop = m.scrollHeight;
+}
+function removeThinking() { const t = document.getElementById('thinking-msg'); if (t) t.remove(); }
+function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
+function quickPrompt(p) { document.getElementById('ai-input').value = p; sendMsg(); }
+function buildSystemContext(topic) {
+  return `You are a friendly, patient university-level tutor helping Francisco study Design Thinking for his exam this Friday at CUNEF. He prefers SHORT responses, step-by-step explanations, and questions to check understanding.
+
+He is currently on: **${topic.name}**
+Key concepts: ${topic.summary || 'general DT context'}
+
+Course: 8 topics (1 Intro, 2 Frameworks VUCA/BANI, 3 The 5 Phases, 4 Empathy, 5 Ideation, 6 BMC/VPC, 7 MVP, 8 Pitch). Exam = MC + 2 open, 60% weight, min 5/10.
+
+Rules: Keep responses SHORT (3-6 sentences typically). Bold key terms. End with a check question. Correct mistakes directly. Mix English/Spanish if he does. Use real examples (Dropbox, Airbnb, Netflix).`;
+}
+
+const HAS_COWORK_AI = !!(window.cowork && typeof window.cowork.askClaude === 'function');
+let API_KEY = localStorage.getItem('dt_api_key') || localStorage.getItem('dt_anthropic_key') || '';
+// Migration: if old key existed under old name, copy it
+if (!localStorage.getItem('dt_api_key') && localStorage.getItem('dt_anthropic_key')) {
+  localStorage.setItem('dt_api_key', localStorage.getItem('dt_anthropic_key'));
+}
+
+function detectProvider(key) {
+  if (!key) return null;
+  if (key.startsWith('sk-ant-')) return 'anthropic';
+  if (key.startsWith('AIza')) return 'gemini';
+  return null;
+}
+
+function setApiKey() {
+  const cur = API_KEY ? API_KEY.slice(0, 12) + '…(saved)' : '';
+  const newKey = prompt(
+    'Paste your API key — auto-detects provider:\n\n' +
+    '🆓 Google Gemini (recommended, free, NO card): aistudio.google.com → keys start with "AIza"\n' +
+    '💳 Anthropic Claude (requires card): console.anthropic.com → keys start with "sk-ant-"\n\n' +
+    'The key is stored ONLY in this browser (localStorage).\n' +
+    'Leave empty to remove it.',
+    cur
+  );
+  if (newKey === null) return;
+  const trimmed = newKey.trim();
+  if (!trimmed || trimmed.includes('…(saved)')) {
+    if (confirm('Remove saved API key? Chat will fall back to opening Claude.ai in a new tab.')) {
+      localStorage.removeItem('dt_api_key');
+      localStorage.removeItem('dt_anthropic_key');
+      API_KEY = '';
+      updateAIContextPill();
+      alert('API key removed.');
+    }
+    return;
+  }
+  const provider = detectProvider(trimmed);
+  if (!provider) {
+    alert('Unrecognized key format.\n\n• Google Gemini keys start with "AIza"\n• Anthropic keys start with "sk-ant-"');
+    return;
+  }
+  localStorage.setItem('dt_api_key', trimmed);
+  API_KEY = trimmed;
+  updateAIContextPill();
+  alert('✓ ' + (provider === 'gemini' ? 'Google Gemini' : 'Anthropic Claude') + ' key saved. The chat now responds embedded in this page.');
+}
+
+async function callAnthropic(systemPrompt, userText) {
+  const models = ['claude-haiku-4-5-20251001', 'claude-3-5-haiku-latest', 'claude-3-5-haiku-20241022'];
+  let lastErr;
+  for (const model of models) {
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({ model, max_tokens: 800, system: systemPrompt, messages: [{ role: 'user', content: userText }] })
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        if (res.status === 404 || /model/.test(txt)) { lastErr = new Error(res.status + ': ' + txt); continue; }
+        throw new Error('API error ' + res.status + ': ' + txt);
+      }
+      const data = await res.json();
+      if (Array.isArray(data.content) && data.content[0] && typeof data.content[0].text === 'string') return data.content[0].text;
+      return JSON.stringify(data);
+    } catch (e) { lastErr = e; if (!String(e.message || e).match(/model/i)) throw e; }
+  }
+  throw lastErr || new Error('All models failed');
+}
+
+async function listGeminiModels() {
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models?key=' + encodeURIComponent(API_KEY);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('listModels ' + res.status + ': ' + await res.text());
+  const data = await res.json();
+  return (data.models || [])
+    .filter(m => Array.isArray(m.supportedGenerationMethods) && m.supportedGenerationMethods.includes('generateContent'))
+    .map(m => m.name.replace(/^models\//, ''));
+}
+
+async function callGemini(systemPrompt, userText) {
+  // Try candidate model names first; if all fail, list available models and try those
+  let modelsToTry = [
+    'gemini-2.5-flash', 'gemini-2.5-flash-lite',
+    'gemini-2.0-flash', 'gemini-2.0-flash-lite',
+    'gemini-flash-latest', 'gemini-1.5-flash-latest', 'gemini-1.5-flash'
+  ];
+  let triedDiscover = false;
+  let lastErr;
+
+  while (modelsToTry.length > 0) {
+    const model = modelsToTry.shift();
+    try {
+      const url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + encodeURIComponent(API_KEY);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: userText }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          generationConfig: { maxOutputTokens: 800, temperature: 0.7 }
+        })
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        // If 404 / not found, try next model (or discover available ones)
+        if (res.status === 404 || /NOT_FOUND|not found/i.test(txt)) {
+          lastErr = new Error(res.status + ': model ' + model + ' not available');
+          if (modelsToTry.length === 0 && !triedDiscover) {
+            triedDiscover = true;
+            try {
+              const available = await listGeminiModels();
+              // prefer flash-style models first
+              modelsToTry = available.sort((a, b) => {
+                const score = n => (/flash/.test(n) ? 0 : 1) + (/lite/.test(n) ? 0.5 : 0) + (/exp|preview/.test(n) ? 0.3 : 0);
+                return score(a) - score(b);
+              });
+              if (modelsToTry.length === 0) throw new Error('No generateContent-capable models found on this API key.');
+              continue;
+            } catch (de) { throw de; }
+          }
+          continue;
+        }
+        // any other error: stop and surface
+        throw new Error('API error ' + res.status + ': ' + txt);
+      }
+      const data = await res.json();
+      if (data.candidates && data.candidates[0] && data.candidates[0].content && Array.isArray(data.candidates[0].content.parts)) {
+        return data.candidates[0].content.parts.map(p => p.text || '').join('\n');
+      }
+      return JSON.stringify(data);
+    } catch (e) {
+      lastErr = e;
+      // network or non-model errors: stop
+      if (!/NOT_FOUND|not found|404/i.test(String(e.message || e))) throw e;
+    }
+  }
+  throw lastErr || new Error('No working Gemini model found');
+}
+
+async function callAI(systemPrompt, userText) {
+  const provider = detectProvider(API_KEY);
+  if (provider === 'gemini') return await callGemini(systemPrompt, userText);
+  if (provider === 'anthropic') return await callAnthropic(systemPrompt, userText);
+  throw new Error('No valid API key set');
+}
+
+function updateAIContextPill() {
+  const sub = document.querySelector('.ai-context-pill');
+  if (!sub) return;
+  if (HAS_COWORK_AI) {
+    sub.innerHTML = '📚 Context-aware: I know what topic you\'re on';
+  } else if (API_KEY) {
+    const p = detectProvider(API_KEY);
+    sub.innerHTML = (p === 'gemini' ? '🆓 Connected to Google Gemini' : '🔑 Connected to Claude') + ' — embedded chat';
+  } else {
+    sub.innerHTML = '🌐 Send → opens Claude.ai with your question pre-filled';
+  }
+}
+
+async function sendMsg() {
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const topic = getActiveTopic();
+
+  if (HAS_COWORK_AI) {
+    // ===== Cowork artifact path: embedded Claude via cowork =====
+    input.value = '';
+    addMsg(text, 'user');
+    document.getElementById('ai-send').disabled = true;
+    addThinking();
+    try {
+      const response = await window.cowork.askClaude(buildSystemContext(topic) + '\n\nUser question: ' + text, []);
+      removeThinking();
+      addMsg(response, 'assistant');
+    } catch (err) {
+      removeThinking();
+      addMsg('Sorry — something went wrong. (' + (err.message || err) + ')', 'assistant');
+    } finally {
+      document.getElementById('ai-send').disabled = false;
+      input.focus();
+    }
+  } else if (API_KEY) {
+    // ===== Standalone with API key: embedded chat via Gemini or Anthropic =====
+    input.value = '';
+    addMsg(text, 'user');
+    document.getElementById('ai-send').disabled = true;
+    addThinking();
+    try {
+      const response = await callAI(buildSystemContext(topic), text);
+      removeThinking();
+      addMsg(response, 'assistant');
+    } catch (err) {
+      removeThinking();
+      const m = String(err.message || err);
+      let hint = '';
+      if (/\b401\b|\b403\b|invalid|authentication|API key/i.test(m)) hint = '\n\n⚙ Click the gear icon to fix your API key.';
+      else if (/\b429\b|quota|rate limit|RESOURCE_EXHAUSTED/i.test(m)) hint = '\n\n⚠️ Rate limit — wait a moment and try again.';
+      else if (/credit|billing/i.test(m)) hint = '\n\n💳 API account is out of credit.';
+      else if (/NOT_FOUND|404|no working/i.test(m)) hint = '\n\n⚙ No compatible model found. Try regenerating your Gemini key at aistudio.google.com.';
+      addMsg('API error: ' + m + hint, 'assistant');
+    } finally {
+      document.getElementById('ai-send').disabled = false;
+      input.focus();
+    }
+  } else {
+    // ===== No key: fallback to Claude.ai redirect =====
+    input.value = '';
+    addMsg(text, 'user');
+    const fullPrompt = buildSystemContext(topic) + '\n\nUser question: ' + text;
+    const url = 'https://claude.ai/new?q=' + encodeURIComponent(fullPrompt);
+    try { window.open(url, '_blank', 'noopener,noreferrer'); } catch(e) {}
+    addMsg('✨ Opened **Claude.ai** in a new tab with your question + context. Press Enter there to get the answer.\n\nWant embedded chat instead? Click the ⚙ in the header to add your Anthropic API key.\n\nIf no tab opened, [click here](' + url + ').', 'assistant');
+    input.focus();
+  }
+}
+
+// Hide the settings gear by default — only show it if user adds ?api=true to the URL
+window.addEventListener('DOMContentLoaded', () => {
+  updateAIContextPill();
+  const gear = document.getElementById('ai-settings-btn');
+  const wantApi = new URLSearchParams(window.location.search).has('api');
+  if (gear && (HAS_COWORK_AI || !wantApi)) gear.style.display = 'none';
+});
+
+// ============ GLOSSARY ============
+const GLOSSARY = {
+  'Design Thinking': { cat:'Methodology', def:'A human-centered methodology for solving complex problems, combining an iterative 5-phase process with a mindset of empathy, creativity and rationality.', why:'Helps teams solve problems creatively while keeping the user at the center.', ex:'IDEO redesigned the shopping cart for ABC News in 5 days using DT.', related:['IDEO','Mindset','Empathy'] },
+  'IDEO': { cat:'Company', def:'Global design and consulting firm founded by David Kelley. Popularized Design Thinking.', why:'IDEO took DT out of academia and made it a corporate methodology.', ex:'Famous case: redesigned the Apple mouse, the shopping cart, and many medical devices.', related:['David Kelley','Tim Brown','Stanford d.school'] },
+  'Stanford d.school': { cat:'Institution', def:'Stanford\'s Hasso Plattner Institute of Design — systematized DT into 5 phases.', why:'Created the standard DT framework taught worldwide.', ex:'The 5 phases (Empathize, Define, Ideate, Prototype, Test) come from here.', related:['IDEO','5 phases'] },
+  'Desirability': { cat:'Lens', def:'One of the 3 DT lenses. Asks: does the user actually want or need this?', why:'DT always starts here. Without user desire, nothing else matters.', ex:'Google Glass was technically feasible and viable, but users didn\'t want it — bad desirability.', related:['Feasibility','Viability','Responsibility'] },
+  'Feasibility': { cat:'Lens', def:'One of the 3 DT lenses. Asks: can we build this with current technology?', why:'Ensures the solution is actually buildable, not just a dream.', ex:'A teleportation app would be desirable and viable, but not feasible with today\'s tech.', related:['Desirability','Viability','Responsibility'] },
+  'Viability': { cat:'Lens', def:'One of the 3 DT lenses. Asks: is the business model economically sustainable?', why:'Even great products fail if the unit economics don\'t work.', ex:'A €4000 prototype that diabetics love but no one can afford → viability problem.', related:['Desirability','Feasibility','Responsibility'] },
+  'Responsibility': { cat:'Lens (4th)', def:'Modern 4th lens. Asks: is it ethical, sustainable, fair?', why:'Avoids solutions that hurt people, society or the planet.', ex:'A subscription that exploits user data scores low here.', related:['Desirability','Feasibility','Viability'] },
+  'Mindset': { cat:'Core idea', def:'The set of attitudes a Design Thinker adopts before applying the process — curiosity, empathy, action-bias.', why:'Without the mindset, the process becomes empty mechanics.', ex:'Saying "DT is a 5-step process" is incomplete — you must mention mindset too.', related:['Empathy','Bias toward action','Learning from failure'] },
+  'Radical curiosity': { cat:'Mindset attitude', def:'Always asking "why?" — questioning assumptions instead of accepting them.', why:'Unlocks insights hidden in "the way things are always done".', ex:'"Why are nurses walking 2 km/day to find supplies?" → leads to a redesign.', related:['Mindset','Empathy'] },
+  'Empathy': { cat:'Mindset attitude', def:'Understanding the user from the inside — their feelings, motivations and frustrations. Not just imagining; observing and interacting.', why:'You can\'t solve problems you don\'t understand.', ex:'IDEO designers spent days riding in ambulances before redesigning a stretcher.', related:['Sympathy','Empathy Map','User Persona'] },
+  'Sympathy': { cat:'Contrast', def:'Feeling FOR someone (pity from a distance). NOT what DT wants.', why:'Sympathy leads to patronizing solutions; empathy leads to good ones.', ex:'"I feel sorry for elderly people who are lonely" = sympathy. "Let me sit with them for a week to understand" = empathy.', related:['Empathy'] },
+  'Embrace ambiguity': { cat:'Mindset attitude', def:'Tolerating uncertainty. Treating poorly-defined problems as opportunities, not obstacles.', why:'In real life problems rarely come with clear briefs.', ex:'"Make customers happier" sounds vague — a design thinker sees creative freedom.', related:['Mindset'] },
+  'Bias toward action': { cat:'Mindset attitude', def:'Preferring to do, build and test rather than over-plan.', why:'Learning happens through doing, not through endless meetings.', ex:'Sketch a wireframe in 1 hour and show it, instead of writing a 30-page spec.', related:['Fail fast, fail cheap','Prototype'] },
+  'Learning from failure': { cat:'Mindset attitude', def:'Seeing failure as information, not as a verdict.', why:'Each failed test eliminates a wrong path cheaply.', ex:'"Fail fast, fail cheap" — better a €50 paper prototype that flops than a €500K product.', related:['Fail fast, fail cheap','Pivot'] },
+  'Collaboration': { cat:'Mindset attitude', def:'DT is a team sport — diverse perspectives produce better solutions.', why:'4 engineers see the problem from one angle. 4 different profiles see it from 4 angles.', ex:'An IDEO team mixes designers, engineers, anthropologists and business strategists.', related:['Mindset'] },
+  'Creative optimism': { cat:'Mindset attitude', def:'Believing a better solution always exists than the current one.', why:'Without this, you stop exploring too soon.', ex:'"This is just how it is" is the enemy. "There must be a better way" is the spark.', related:['Mindset','Radical curiosity'] },
+  'VUCA': { cat:'Framework', def:'1990s framework describing the modern environment: Volatile, Uncertain, Complex, Ambiguous.', why:'Explains why old planning methods fail today.', ex:'A startup planning 5 years ahead in 2020 had no idea about the pandemic.', related:['BANI','Volatility','Uncertainty','Complexity','Ambiguity'] },
+  'Volatility': { cat:'VUCA letter', def:'V of VUCA. Change is fast and unpredictable.', why:'Long-term plans break under volatility.', ex:'Oil prices going from $80 to $-30 in 2020.', related:['VUCA'] },
+  'Uncertainty': { cat:'VUCA letter', def:'U of VUCA. Not enough information to make confident decisions.', why:'Forces decision-making under incomplete data.', ex:'Launching a product into a market no one has measured yet.', related:['VUCA'] },
+  'Complexity': { cat:'VUCA letter', def:'C of VUCA. Many interconnected factors affecting each other.', why:'You can\'t change one variable without rippling effects.', ex:'A supply chain with 200 suppliers across 30 countries — one delay cascades.', related:['VUCA'] },
+  'Ambiguity': { cat:'VUCA letter', def:'A of VUCA. Causes and effects unclear, situations poorly defined.', why:'Forces interpretation rather than calculation.', ex:'Customer reviews say "I love it" and "I hate it" for the same product — why?', related:['VUCA'] },
+  'BANI': { cat:'Framework', def:'Post-pandemic framework: Brittle, Anxious, Nonlinear, Incomprehensible. Adds the emotional/cognitive impact to VUCA.', why:'Captures that we\'re not just facing change — we\'re overwhelmed by it.', ex:'2020-2023 chained shocks: pandemic, war, inflation, banking crisis.', related:['VUCA','Brittle','Anxious','Nonlinear','Incomprehensible'] },
+  'Brittle': { cat:'BANI letter', def:'B of BANI. Systems look strong but shatter suddenly.', why:'Resilience is needed, not just stability.', ex:'Just-in-time supply chains worked perfectly… until they didn\'t (semiconductor crisis).', related:['BANI'] },
+  'Anxious': { cat:'BANI letter', def:'A of BANI. The uncertainty creates paralyzing anxiety in people.', why:'Affects decision-making at every level.', ex:'Knowledge workers freezing on choices because the cost of being wrong feels enormous.', related:['BANI'] },
+  'Nonlinear': { cat:'BANI letter', def:'N of BANI. Small causes can have huge effects (and vice versa).', why:'The size of effort doesn\'t predict the size of outcome.', ex:'A tweet from Elon Musk tanking a company\'s stock 20%.', related:['BANI'] },
+  'Incomprehensible': { cat:'BANI letter', def:'I of BANI. Too much information, hard to understand what\'s really happening.', why:'Information overload turns into paralysis.', ex:'Real-time global news feeds bombarding you with contradictions.', related:['BANI'] },
+  'Lean Startup': { cat:'Methodology', def:'Methodology by Eric Ries based on the Build-Measure-Learn cycle. Validates business hypotheses fast.', why:'Helps you avoid building things nobody wants.', ex:'Dropbox\'s explainer video MVP got 70K signups before the product existed.', related:['Eric Ries','MVP','Build-Measure-Learn','Pivot'] },
+  'Agile': { cat:'Methodology', def:'Software development methodology from the Agile Manifesto. Builds products in short 2-week sprints.', why:'Delivers value to users sooner with continuous feedback.', ex:'Spotify releases small updates every 2 weeks instead of one big yearly version.', related:['Sprint','Lean Startup'] },
+  'Eric Ries': { cat:'Author', def:'Silicon Valley entrepreneur who created the Lean Startup methodology and wrote the book of the same name (2011).', why:'Brought scientific thinking to startups.', ex:'His Build-Measure-Learn loop is taught in every business school.', related:['Lean Startup','MVP','Pivot'] },
+  'Tim Brown': { cat:'Author', def:'Former CEO of IDEO, popularized Design Thinking through his TED talks and the book "Change by Design".', why:'Made DT a household corporate term.', ex:'His TED talk "Designers — think big!" has millions of views.', related:['IDEO','Design Thinking'] },
+  'David Kelley': { cat:'Author', def:'Founder of IDEO and Stanford\'s d.school. Father of Design Thinking.', why:'Built the institutions that spread DT globally.', ex:'Started IDEO in 1991 — now thousands of companies have a DT team.', related:['IDEO','Stanford d.school'] },
+  'MVP': { cat:'Artifact', def:'Minimum Viable Product. The simplest version of a product that allows maximum validated learning with minimum effort. Must work (even if manually).', why:'Tests whether the market wants what you\'re building.', ex:'Airbnb founders rented out their own apartment first — that was their concierge MVP.', related:['Lean Startup','Prototype','PoC','Wizard of Oz','Concierge MVP'] },
+  'Sprint': { cat:'Artifact', def:'Agile work cycle of 2-4 weeks. At the end of each sprint, a working increment is delivered.', why:'Forces frequent delivery and feedback.', ex:'Spotify ships every 2 weeks; the Tesla Autopilot team works in 2-week sprints.', related:['Agile'] },
+  'Prototype': { cat:'Artifact', def:'Tangible representation of an idea. Built to LEARN, not to demonstrate. Should be cheap, fast and disposable.', why:'Communicates 1000× better than a slide deck.', ex:'A paper sketch of a banking app shown to 5 users before any code is written.', related:['MVP','PoC','Fidelity'] },
+  'PoC': { cat:'Artifact', def:'Proof of Concept. Demonstrates technical feasibility. Internal audience only.', why:'Removes technical doubt before building the MVP.', ex:'Tesla built a PoC battery-powered Lotus before launching the Roadster (its MVP).', related:['MVP','Prototype'] },
+  '5 phases': { cat:'Process', def:'The DT process: 1. Empathize → 2. Define → 3. Ideate → 4. Prototype → 5. Test. Iterative, not linear.', why:'Provides a repeatable framework to tackle wicked problems.', ex:'Stanford\'s d.school uses this exact sequence in every project.', related:['Empathize','Define','Ideate','Prototype phase','Test phase'] },
+  'Empathize': { cat:'Phase 1', def:'First phase. Understand the user deeply through interviews, observation and shadowing.', why:'Discovers real needs, not assumed ones.', ex:'IDEO designers spend weeks observing users in hospitals before redesigning equipment.', related:['Empathy','Shadowing','Empathy Map'] },
+  'Define': { cat:'Phase 2', def:'Second phase. Synthesize learnings and frame the right problem. Convergent thinking.', why:'Avoids solving the wrong problem perfectly.', ex:'Blockbuster defined the problem as "more stores" instead of "convenient access to movies" — and lost.', related:['HMW','POV','Convergent'] },
+  'Ideate': { cat:'Phase 3', def:'Third phase. Generate many ideas without judging. Divergent thinking. Quantity over quality.', why:'The best ideas often grow from the wildest ones.', ex:'A team produces 108 ideas in 30 minutes via Brainwriting 6-3-5.', related:['Brainstorming','SCAMPER','Crazy 8s','Divergent'] },
+  'Prototype phase': { cat:'Phase 4', def:'Fourth phase. Build to learn. Start with low fidelity (paper sketches) and increase only when needed.', why:'Cheaper to find flaws in a sketch than in a finished product.', ex:'Designers fold cardboard mockups of a new ATM before sending CAD files to factory.', related:['Prototype','MVP','Fidelity'] },
+  'Test phase': { cat:'Phase 5', def:'Fifth phase. Put the prototype in front of real users. Observe, ask, listen. Don\'t explain it.', why:'If the product needs explanation, it has a design problem.', ex:'5 users use your app silently while you watch. Their confusion = your roadmap.', related:['Usability test','Empathize'] },
+  'Iterative': { cat:'Process concept', def:'Non-linear: you can jump back to any previous phase at any time based on what you learn.', why:'Real innovation rarely goes in a straight line.', ex:'Testing reveals you didn\'t understand the user → back to Empathize.', related:['5 phases'] },
+  'Divergent': { cat:'Thinking mode', def:'Opening up: generate, explore, no judgment. Used in Empathize and Ideate.', why:'Without divergence, you collapse on the first idea.', ex:'Brainstorming session where wild ideas are explicitly welcome.', related:['Convergent','Ideate','Empathize'] },
+  'Convergent': { cat:'Thinking mode', def:'Closing down: filter, decide, focus. Used in Define, Prototype, Test.', why:'Without convergence, you never ship.', ex:'Picking the 3 best ideas from 50 using dot voting.', related:['Divergent','Define'] },
+  'HMW': { cat:'Tool', def:'"How Might We…" statement. Bridge between Define and Ideate. Reframes the problem as a design opportunity.', why:'Sparks broad, actionable idea generation.', ex:'"How might we help university students find safe housing quickly?"', related:['Define','Ideate'] },
+  'POV': { cat:'Tool', def:'Point of View — problem statement from user\'s perspective. Format: "[User] needs [need] because [insight]."', why:'Forces clarity about who the user is and what they need.', ex:'"Maria, a single mom, needs quick healthy meals because she has 30 min after work."', related:['Define','User Persona'] },
+  'Empathy Map': { cat:'Tool', def:'Visual tool with 6 quadrants: Think & Feel, See, Hear, Say & Do, Pains, Gains. Synthesizes user research.', why:'The valuable gap = SAY/DO (visible) vs THINK/FEEL (hidden).', ex:'Build one for each persona after interviews to capture insights.', related:['User Persona','Empathy'] },
+  'User Persona': { cat:'Tool', def:'Fictional but realistic profile based on real research. Has name, photo, demographics, goals, frustrations, quote.', why:'Humanizes the user — easier to design for "Maria" than for "a user".', ex:'Spotify\'s "Sara, 25, commutes 1h daily, loves discovering new music".', related:['Empathy Map','POV'] },
+  'Shadowing': { cat:'Method', def:'Follow a user through their day, observing without interfering.', why:'Reveals habitual behaviors users wouldn\'t describe in an interview.', ex:'Shadowing a nurse for 8h reveals 30 inefficient steps she doesn\'t even notice anymore.', related:['Empathize','Observation'] },
+  '5 Whys': { cat:'Technique', def:'Ask "why?" 5 times in a row to reach the root cause of a problem.', why:'Most surface explanations are symptoms, not causes.', ex:'Toyota uses it on every defect: 5 whys take you from "engine broke" to "supplier changed steel grade".', related:['Empathize'] },
+  'SCAMPER': { cat:'Ideation tool', def:'Checklist: Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse. Transforms existing ideas.', why:'Forces you to look at problems from 7 angles.', ex:'Applied to a backpack: Substitute fabric → solar panels. Combine → backpack + scooter.', related:['Brainstorming','Crazy 8s'] },
+  'Brainstorming': { cat:'Ideation tool', def:'Group idea generation following Osborn\'s 4 rules: quantity, no criticism, combine & improve, wild ideas welcome.', why:'Together generates more ideas than alone — if you suspend judgment.', ex:'Alex Osborn coined the term in 1953 in his book "Applied Imagination".', related:['Osborn','SCAMPER','Brainwriting'] },
+  'Osborn': { cat:'Author', def:'Alex Osborn — advertising executive who codified brainstorming (1953) with 4 rules.', why:'His rules still define modern ideation.', ex:'Used at BBDO ad agency to generate campaign ideas at scale.', related:['Brainstorming'] },
+  'Brainwriting': { cat:'Ideation tool', def:'6-3-5 technique: 6 people write 3 ideas in 5 min, then rotate. Result: 108 ideas in 30 min.', why:'Avoids groupthink that plagues regular brainstorming.', ex:'A product team generates 108 distinct concepts before a 30-min coffee break.', related:['Brainstorming'] },
+  'Crazy 8s': { cat:'Ideation tool', def:'Fold paper into 8 sections. Sketch 8 different ideas in 8 minutes (1 min each).', why:'Forces speed — kills self-censorship and perfectionism.', ex:'Google Ventures uses Crazy 8s in their Design Sprint methodology.', related:['SCAMPER','Brainstorming'] },
+  'TRIZ': { cat:'Ideation tool', def:'Russian theory of inventive problem-solving. 40 inventive principles + contradiction matrix.', why:'Innovation follows predictable patterns — TRIZ codifies them.', ex:'Used heavily in engineering: Samsung, Procter & Gamble.', related:['Ideate'] },
+  'BMC': { cat:'Framework', def:'Business Model Canvas. A 9-block visual tool by Alexander Osterwalder (2010) to describe how a business creates, delivers and captures value.', why:'One page replaces a 50-page business plan.', ex:'Used by startups in YC and CUNEF\'s own entrepreneurship program.', related:['Osterwalder','VPC','Customer Segments','Value Proposition'] },
+  'VPC': { cat:'Framework', def:'Value Proposition Canvas. Expands the VP block of the BMC. Customer Profile (Jobs, Pains, Gains) ↔ Value Map (Products, Pain Relievers, Gain Creators).', why:'Without VPC, "value proposition" stays vague.', ex:'Spotify\'s VPC: Customer Job = discover music; Pain = decision fatigue; Value Map = Discover Weekly.', related:['BMC','Product-Market Fit','Osterwalder'] },
+  'Osterwalder': { cat:'Author', def:'Alexander Osterwalder — Swiss business theorist who created the BMC and VPC.', why:'His tools are now standard in every business school.', ex:'Book "Business Model Generation" (2010) sold over 1M copies.', related:['BMC','VPC'] },
+  'Customer Segments': { cat:'BMC block', def:'BMC block 1. The groups of people or organizations you serve.', why:'Different segments need different value propositions.', ex:'Mass market (Coca-Cola), niche (luxury watches), multi-sided (Uber: drivers + riders).', related:['BMC','Value Proposition'] },
+  'Value Proposition': { cat:'BMC block', def:'BMC block 2. The bundle of products and services that creates value for a customer segment.', why:'The heart of the canvas — without it, nothing else matters.', ex:'Tesla\'s VP: sustainable performance + tech-forward driving experience.', related:['BMC','VPC','Product-Market Fit'] },
+  'Build-Measure-Learn': { cat:'Cycle', def:'Lean Startup core loop. Build the smallest experiment → Measure actionable metrics → Learn (confirm or pivot).', why:'Applies scientific method to startups.', ex:'Dropbox\'s loop: video MVP → measure signups → learn there\'s demand → build product.', related:['Lean Startup','MVP','Pivot'] },
+  'Pivot': { cat:'Concept', def:'Changing strategy while keeping the accumulated learning. NOT failure — adaptation based on data.', why:'Most successful startups pivoted at least once.', ex:'Instagram started as Burbn (a check-in app). They pivoted to photo-sharing → $1B exit.', related:['Lean Startup','Build-Measure-Learn'] },
+  'Product-Market Fit': { cat:'Milestone', def:'The moment your Value Map fits perfectly with the Customer Profile — the solution truly matches market need.', why:'Before PMF, you experiment. After PMF, you scale.', ex:'Marc Andreessen: "you can always feel PMF when it\'s happening — orders coming faster than you can fill them".', related:['VPC','Value Proposition','Pivot'] },
+  'Fail fast, fail cheap': { cat:'Principle', def:'DT/Lean principle: better to fail early with a €50 prototype than late with a €500K product.', why:'Failure is information — make it as cheap as possible.', ex:'Test a sketch with 5 users in 1 hour, not a coded app after 3 months.', related:['Prototype','MVP','Learning from failure'] },
+  'Wizard of Oz': { cat:'MVP type', def:'MVP where the product LOOKS automated but humans operate it manually behind the scenes.', why:'Tests demand before investing in real automation.', ex:'Zappos founder bought shoes from local stores and shipped them himself to test demand for online shoe sales.', related:['MVP','Concierge MVP'] },
+  'Concierge MVP': { cat:'MVP type', def:'MVP where the service is delivered manually and personally before being automated.', why:'Highest learning per user — you talk to each one.', ex:'Airbnb founders hosted guests in their own apartment, photographed listings themselves.', related:['MVP','Wizard of Oz'] },
+  'Landing page MVP': { cat:'MVP type', def:'MVP that\'s just a webpage describing the product, measuring real interest (waitlist, "buy" clicks).', why:'Cheapest possible market test.', ex:'Buffer launched with a landing page asking for pricing preferences before writing code.', related:['MVP'] },
+  'Explainer video MVP': { cat:'MVP type', def:'A video that explains the product before it\'s built. Measures interest by signups.', why:'Validates demand without building anything.', ex:'Dropbox\'s 3-min explainer video drove 70,000 signups overnight.', related:['MVP'] },
+  'Fidelity': { cat:'Concept', def:'How realistic and polished a prototype is. Low fidelity = paper sketches. High fidelity = working product.', why:'Start low — only invest in high fidelity once basics are validated.', ex:'Sketch → Wireframe → Mockup → Functional → MVP. Each step costs more.', related:['Prototype','MVP'] },
+  'Elevator Pitch': { cat:'Format', def:'A 30-90 second presentation explaining a business idea clearly and memorably. Goal: earn the next conversation, NOT close a sale.', why:'Investors decide in seconds whether to keep listening.', ex:'Airbnb\'s original pitch: "Book rooms with locals, rather than hotels."', related:['Hook','CTA','Hero\'s Journey'] },
+  'Hook': { cat:'Pitch part', def:'First sentence of a pitch. Grabs attention with a surprising stat, rhetorical question or short story.', why:'You have ~5 seconds to earn the next 60.', ex:'"Every year, $50 billion is wasted on hotel rooms that sit empty 70% of the time."', related:['Elevator Pitch','CTA'] },
+  'CTA': { cat:'Pitch part', def:'Call to Action — the specific ask at the end of a pitch. A meeting, an investment, a partnership.', why:'Without it, the conversation ends with nothing happening.', ex:'"Can we set up a 30-minute call next Tuesday?"', related:['Elevator Pitch','Hook'] },
+  'Hero\'s Journey': { cat:'Storytelling', def:'Narrative structure used in pitches: Initial situation → Conflict → Solution (your product as ally) → Resolution. The USER is the hero, you are the guide.', why:'Stories stick in memory better than facts.', ex:'Apple\'s "1984" ad cast users as rebels against conformity, Apple as their guide.', related:['Elevator Pitch'] },
+  'Usability test': { cat:'Method', def:'Watching a real user try to use your prototype while you observe silently. Don\'t explain.', why:'Reveals design flaws no expert review would catch.', ex:'5 users uncover 80% of usability problems (Nielsen).', related:['Test phase','Prototype'] },
+  'Observation': { cat:'Method', def:'Watching users in their natural context — fly-on-the-wall, no interruption.', why:'People often behave differently from what they say.', ex:'Ethnographic researchers spend weeks in users\' environments — homes, offices, hospitals.', related:['Shadowing','Empathize'] },
+};
+
+function showTerm(termName) {
+  const t = GLOSSARY[termName];
+  if (!t) return;
+  document.getElementById('term-cat').textContent = t.cat;
+  document.getElementById('term-title').textContent = termName;
+  const body = document.getElementById('term-body');
+  let html = '<h4>What it is</h4><p>' + t.def + '</p>';
+  if (t.why) html += '<h4>Why it matters</h4><p>' + t.why + '</p>';
+  if (t.ex) html += '<h4>Real example</h4><div class="term-example">' + t.ex + '</div>';
+  if (t.related && t.related.length) {
+    html += '<h4>Related</h4><div class="term-related">';
+    t.related.forEach(r => { html += '<button class="term-chip" onclick="showTerm(\'' + r.replace(/'/g, "\\'") + '\')">' + r + '</button>'; });
+    html += '</div>';
+  }
+  body.innerHTML = html;
+  document.getElementById('term-overlay').classList.add('open');
+}
+function closeTerm(e) {
+  if (e && e.target.id !== 'term-overlay' && e.type === 'click') return;
+  document.getElementById('term-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerm(); });
+
+// Auto-link terms in topic content panels
+function linkTermsIn(root) {
+  if (!root) return;
+  const terms = Object.keys(GLOSSARY).sort((a,b) => b.length - a.length); // longest first
+  // Build regex group, escape special chars
+  const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const patternSrc = '(?:^|[^\\w-])(' + escaped.join('|') + ')(?![\\w-])';
+
+  // Collect candidate text nodes first (skip stateful regex inside walker)
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const p = node.parentElement;
+      if (!p) return NodeFilter.FILTER_REJECT;
+      if (p.closest('.term') || p.closest('button') || p.tagName === 'SCRIPT' || p.tagName === 'STYLE' || p.tagName === 'CODE' || p.closest('.term-modal') || p.closest('.ai-panel')) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = [];
+  let n;
+  while ((n = walker.nextNode())) nodes.push(n);
+
+  nodes.forEach(node => {
+    const text = node.nodeValue;
+    // fresh regex per node to avoid lastIndex issues
+    const pattern = new RegExp(patternSrc, 'g');
+    let matches = [];
+    let m;
+    while ((m = pattern.exec(text)) !== null) {
+      // m.index is start of the prefix; the term starts at m.index + (m[0].length - m[1].length)
+      const termStart = m.index + (m[0].length - m[1].length);
+      const termEnd = termStart + m[1].length;
+      matches.push({ start: termStart, end: termEnd, term: m[1] });
+      if (m[0].length === 0) pattern.lastIndex++;
+    }
+    if (matches.length === 0) return;
+
+    const frag = document.createDocumentFragment();
+    let lastIdx = 0;
+    matches.forEach(mm => {
+      if (mm.start > lastIdx) frag.appendChild(document.createTextNode(text.slice(lastIdx, mm.start)));
+      const span = document.createElement('span');
+      span.className = 'term';
+      span.dataset.term = mm.term;
+      span.textContent = text.slice(mm.start, mm.end);
+      span.addEventListener('click', () => showTerm(mm.term));
+      frag.appendChild(span);
+      lastIdx = mm.end;
+    });
+    if (lastIdx < text.length) frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+// Link terms in all topic panels on init
+['t1','t2','t3','t4','t5','t6','t7','t8'].forEach(id => linkTermsIn(document.getElementById(id)));
+
+// ============ LIVE CLOCK + COUNTDOWN ============
+const EXAM_DATE = new Date(2026, 4, 29, 18, 0, 0); // May 29, 2026 at 18:00 (6pm) local time
+function pad(n) { return String(n).padStart(2, '0'); }
+function updateLiveStats() {
+  const now = new Date();
+  const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  const timeEl = document.getElementById('hero-today-time');
+  const dateEl = document.getElementById('hero-today-date');
+  if (timeEl) timeEl.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+  if (dateEl) dateEl.textContent = dayNames[now.getDay()] + ', ' + monthNames[now.getMonth()] + ' ' + now.getDate();
+
+  const diff = EXAM_DATE - now;
+  const cdEl = document.getElementById('hero-countdown');
+  const cdLbl = document.getElementById('hero-countdown-label');
+  if (cdEl) {
+    if (diff > 0) {
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      let cd;
+      if (d > 0) cd = d + 'd ' + h + 'h ' + m + 'm';
+      else if (h > 0) cd = h + 'h ' + pad(m) + 'm ' + pad(s) + 's';
+      else cd = pad(m) + 'm ' + pad(s) + 's';
+      cdEl.textContent = cd;
+      if (cdLbl) cdLbl.textContent = 'Time to exam';
+    } else {
+      cdEl.textContent = 'NOW!';
+      if (cdLbl) cdLbl.textContent = 'The exam is happening';
+    }
+  }
+
+  const fcEl = document.getElementById('hero-fc-known');
+  if (fcEl) fcEl.textContent = Object.keys(fcKnown).length + '/' + FLASHCARDS.length;
+}
+
+// ============ INIT ============
+renderStatuses();
+updateAITopicContext();
+updateFCStats();
+updateLiveStats();
+setInterval(updateLiveStats, 1000);
+</script>
+</body>
+</html>
