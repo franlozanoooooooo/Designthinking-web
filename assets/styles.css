@@ -1,0 +1,122 @@
+/* ===================================================================
+   Club Atlético Antoniano — estilos compartidos
+   Rojo · Blanco · Negro
+=================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --rojo: #c8102e;
+  --rojo-osc: #8f0b20;
+  --rojo-claro: #e6213b;
+  --blanco: #ffffff;
+  --hueso: #f6f3f1;
+  --negro: #0d0d0d;
+  --negro-2: #161616;
+  --gris: #4a4a4a;
+  --gris-claro: #8c8c8c;
+  --linea: #e9e6e4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--negro);
+  background: var(--blanco);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .display { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.04; letter-spacing: .5px; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== NAV ===== */
+header.nav { position: sticky; top: 0; z-index: 50; background: var(--negro); border-bottom: 3px solid var(--rojo); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .crest { width: 40px; height: 48px; }
+.brand .name b { font-family: 'Anton', sans-serif; font-size: 1.02rem; letter-spacing: .6px; color: #fff; display: block; line-height: 1; }
+.brand .name span { font-size: .64rem; color: var(--rojo-claro); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+nav.links { display: flex; gap: 26px; align-items: center; }
+nav.links a { color: #fff; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: .8; transition: opacity .2s, color .2s; }
+nav.links a:hover { opacity: 1; color: var(--rojo-claro); }
+nav.links a.active { opacity: 1; color: #fff; border-bottom: 2px solid var(--rojo); padding-bottom: 4px; }
+.burger { display: none; background: none; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; }
+
+/* ===== BOTONES ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: 'Anton', sans-serif; letter-spacing: 1px; text-transform: uppercase;
+  background: var(--rojo); color: #fff; padding: 13px 26px; border-radius: 4px; border: none;
+  font-size: .95rem; transition: transform .15s, background .2s, box-shadow .2s;
+  box-shadow: 0 6px 18px rgba(200,16,46,.35);
+}
+.btn:hover { background: var(--rojo-claro); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(200,16,46,.45); }
+.btn.ghost { background: transparent; border: 2px solid #fff; box-shadow: none; padding: 11px 24px; }
+.btn.ghost:hover { background: #fff; color: var(--negro); }
+.nav .btn { padding: 9px 18px; font-size: .82rem; }
+
+/* ===== TIRA DE FRANJAS ===== */
+.stripe { height: 8px; background: repeating-linear-gradient(90deg, var(--rojo) 0 38px, var(--blanco) 38px 76px); }
+.stripe.dark { background: repeating-linear-gradient(90deg, var(--rojo) 0 38px, var(--negro) 38px 76px); }
+
+/* ===== PAGE HEADER (interior) ===== */
+.page-head {
+  background: var(--negro); color: #fff; position: relative; overflow: hidden;
+  padding: 64px 0 56px;
+}
+.page-head::before { content: ""; position: absolute; top: -50%; right: -8%; width: 460px; height: 460px; background: radial-gradient(circle, rgba(200,16,46,.45), transparent 65%); }
+.page-head .wrap { position: relative; z-index: 2; }
+.page-head .crumb { color: var(--rojo-claro); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; font-size: .74rem; }
+.page-head h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin-top: 10px; }
+.page-head p { color: rgba(255,255,255,.78); margin-top: 14px; max-width: 56ch; font-size: 1.05rem; }
+
+/* ===== SECCIONES GENÉRICAS ===== */
+section { padding: 72px 0; }
+.lead { font-size: 1.15rem; color: var(--gris); max-width: 62ch; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.prose h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--negro); margin: 0 0 16px; }
+.prose h2 + p, .prose p { color: var(--gris); margin-bottom: 14px; font-size: 1.02rem; }
+.prose .kicker { color: var(--rojo); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; font-size: .74rem; display: block; margin-bottom: 8px; }
+
+/* tarjetas de datos / enlaces */
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.tile {
+  background: var(--blanco); border: 1px solid var(--linea); border-radius: 10px; padding: 26px;
+  border-top: 4px solid var(--rojo); transition: transform .2s, box-shadow .2s;
+}
+a.tile:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(13,13,13,.12); }
+.tile h3 { font-size: 1.2rem; color: var(--negro); margin-bottom: 8px; }
+.tile p { color: var(--gris); font-size: .94rem; }
+.tile .more { color: var(--rojo); font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 14px; display: inline-block; }
+
+/* datos clave */
+.facts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+.fact { background: var(--hueso); border-left: 4px solid var(--rojo); border-radius: 6px; padding: 14px 18px; min-width: 120px; }
+.fact b { font-family: 'Anton', sans-serif; font-size: 1.7rem; color: var(--rojo); display: block; line-height: 1; }
+.fact span { font-size: .76rem; color: var(--gris); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+/* bloque CTA entradas */
+.cta-band { background: var(--negro); color: #fff; text-align: center; position: relative; overflow: hidden; }
+.cta-band::before { content: ""; position: absolute; top: -40%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,16,46,.4), transparent 65%); }
+.cta-band .wrap { position: relative; z-index: 2; }
+.cta-band h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
+.cta-band h2 em { color: var(--rojo-claro); font-style: normal; }
+.cta-band p { color: rgba(255,255,255,.78); max-width: 52ch; margin: 14px auto 28px; }
+
+/* ===== FOOTER ===== */
+footer { background: var(--negro); color: rgba(255,255,255,.6); padding: 46px 0 26px; }
+.foot-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 22px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.foot-links a { color: rgba(255,255,255,.7); font-size: .82rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.foot-links a:hover { color: var(--rojo-claro); }
+.foot-bottom { padding-top: 22px; font-size: .76rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 880px) {
+  nav.links { display: none; }
+  .burger { display: block; }
+  nav.links.open { display: flex; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; background: var(--negro); padding: 18px 24px; gap: 16px; border-bottom: 3px solid var(--rojo); }
+  .grid-2 { grid-template-columns: 1fr; gap: 32px; }
+  .tiles { grid-template-columns: 1fr; }
+}

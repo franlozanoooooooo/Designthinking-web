@@ -3,30 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Club Atlético Antoniano · Lebrija</title>
-<meta name="description" content="Web oficial del Club Atlético Antoniano (Lebrija). Abónate a hacer Historia.">
+<title>Cantera · Club Atlético Antoniano</title>
+<meta name="description" content="El fútbol base del Antoniano: el futuro rojiblanco de Lebrija.">
 <link rel="stylesheet" href="assets/styles.css">
-<style>
-  .hero {
-    position: relative; min-height: 88vh; display: flex; align-items: flex-end; color: #fff;
-    background:
-      linear-gradient(180deg, rgba(13,13,13,.2) 0%, rgba(143,11,32,.5) 55%, rgba(13,13,13,.94) 100%),
-      url('assets/encabezado.jpg') center 28% / cover no-repeat,
-      linear-gradient(135deg, var(--rojo-osc), var(--rojo) 60%, var(--negro));
-  }
-  .hero::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 60px, rgba(255,255,255,.025) 60px 120px); }
-  .hero-content { position: relative; z-index: 2; padding: 0 0 66px; }
-  .hero .kicker { display: inline-flex; gap: 10px; background: var(--rojo); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 14px; border-radius: 3px; margin-bottom: 22px; }
-  .hero h1 { font-size: clamp(3rem, 8.5vw, 6.4rem); max-width: 13ch; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
-  .hero h1 em { color: var(--rojo-claro); font-style: normal; }
-  .hero .lema { margin-top: 16px; font-size: clamp(1rem, 2.4vw, 1.35rem); font-weight: 600; max-width: 42ch; color: rgba(255,255,255,.92); }
-  .hero .cta-row { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .quick { padding: 64px 0; }
-</style>
 </head>
 <body>
 
-<!--#NAV-->
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html" aria-label="Club Atlético Antoniano">
@@ -40,10 +22,10 @@
       <span class="name"><b>C.A. ANTONIANO</b><span>Lebrija · 1934</span></span>
     </a>
     <nav class="links" id="menu">
-      <a href="index.html" class="active">Inicio</a>
+      <a href="index.html">Inicio</a>
       <a href="club.html">El Club</a>
       <a href="equipo.html">Primer Equipo</a>
-      <a href="cantera.html">Cantera</a>
+      <a href="cantera.html" class="active">Cantera</a>
       <a href="noticias.html">Noticias</a>
       <a href="contacto.html">Contacto</a>
       <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
@@ -52,53 +34,38 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap hero-content">
-    <span class="kicker">★ Lebrija · Sevilla</span>
-    <h1>Abónate a hacer <em>Historia</em></h1>
-    <p class="lema">Convertir en rutina lo extraordinario.</p>
-    <div class="cta-row">
-      <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Hazte abonado</a>
-      <a class="btn ghost" href="club.html">El club</a>
-    </div>
+<section class="page-head">
+  <div class="wrap">
+    <span class="crumb">Cantera</span>
+    <h1>Cantera</h1>
+    <p>El fútbol base del Antoniano: el futuro rojiblanco de Lebrija.</p>
   </div>
 </section>
 <div class="stripe"></div>
 
-<!-- ACCESOS DIRECTOS -->
-<section class="quick">
+<section>
   <div class="wrap">
+    <div class="prose" style="margin-bottom:40px">
+      <span class="kicker">Fútbol base</span>
+      <h2>El futuro rojiblanco</h2>
+      <p class="lead">Formamos a los antonianos del mañana, dentro y fuera del campo, desde prebenjamín hasta juvenil.</p>
+    </div>
     <div class="tiles">
-      <a class="tile" href="equipo.html">
-        <h3>Primer Equipo</h3>
-        <p>Plantilla, cuerpo técnico y el Municipal como fortaleza rojiblanca.</p>
-        <span class="more">Ver equipo →</span>
-      </a>
-      <a class="tile" href="cantera.html">
-        <h3>Cantera</h3>
-        <p>El fútbol base del Antoniano, de prebenjamín a juvenil.</p>
-        <span class="more">Ver cantera →</span>
-      </a>
-      <a class="tile" href="noticias.html">
-        <h3>Noticias</h3>
-        <p>La actualidad del club, partido a partido.</p>
-        <span class="more">Ver noticias →</span>
-      </a>
+      <div class="tile"><h3>Todas las categorías</h3><p>Una estructura de fútbol base que acompaña al jugador en cada etapa de su crecimiento.</p></div>
+      <div class="tile"><h3>Valores</h3><p>Esfuerzo, respeto y compromiso. El fútbol como escuela para crecer como personas.</p></div>
+      <div class="tile"><h3>Familias</h3><p>Cerca de cada familia, con comunicación directa y cercanía en el día a día del club.</p></div>
     </div>
   </div>
 </section>
 
-<!-- CTA ENTRADAS -->
 <section class="cta-band">
   <div class="wrap">
     <h2>Tu sitio en la <em>grada</em></h2>
-    <p>Sé parte del muro rojiblanco que empuja al equipo cada jornada. Abonos y entradas en la plataforma oficial del club.</p>
+    <p>Abonos y entradas en la plataforma oficial del club. Empuja al equipo desde el Municipal.</p>
     <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Conseguir mi entrada</a>
   </div>
 </section>
 
-<!--#FOOTER-->
 <footer>
   <div class="wrap">
     <div class="foot-top">
