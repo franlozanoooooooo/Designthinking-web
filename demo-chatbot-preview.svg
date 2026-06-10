@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" font-family="Inter, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8f0b20"/>
+      <stop offset="0.6" stop-color="#c8102e"/>
+      <stop offset="1" stop-color="#0d0d0d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Fondo web del club -->
+  <rect width="900" height="640" fill="url(#bg)"/>
+  <text x="60" y="150" fill="#ffffff" font-size="13" font-weight="800" letter-spacing="2">★ LEBRIJA · SEVILLA</text>
+  <text x="58" y="225" fill="#ffffff" font-size="64" font-weight="900" font-family="Anton, Impact, sans-serif">ABÓNATE A HACER</text>
+  <text x="58" y="295" fill="#e6213b" font-size="64" font-weight="900" font-family="Anton, Impact, sans-serif">HISTORIA</text>
+  <text x="60" y="345" fill="#ffffffcc" font-size="20">Convertir en rutina lo extraordinario.</text>
+  <rect x="60" y="380" width="190" height="50" rx="5" fill="#c8102e"/>
+  <text x="155" y="411" fill="#fff" font-size="16" font-weight="800" text-anchor="middle" font-family="Anton, sans-serif" letter-spacing="1">HAZTE ABONADO</text>
+
+  <!-- ===== Ventana del chat ===== -->
+  <g filter="url(#shadow)">
+    <rect x="500" y="40" width="372" height="560" rx="16" fill="#ffffff"/>
+
+    <!-- Cabecera -->
+    <path d="M500 56 a16 16 0 0 1 16 -16 h340 a16 16 0 0 1 16 16 v52 h-372 z" fill="#0d0d0d"/>
+    <rect x="500" y="108" width="372" height="3" fill="#c8102e"/>
+    <circle cx="540" cy="74" r="20" fill="#c8102e"/>
+    <text x="540" y="81" fill="#fff" font-size="19" font-weight="900" text-anchor="middle" font-family="Anton, sans-serif">A</text>
+    <text x="572" y="70" fill="#fff" font-size="16" font-weight="800" font-family="Anton, sans-serif" letter-spacing="0.5">ROJI</text>
+    <circle cx="578" cy="86" r="4" fill="#36d36f"/>
+    <text x="589" y="90" fill="#ffffffb3" font-size="10" font-weight="700" letter-spacing="1.5">ANTONIANO · EN LÍNEA</text>
+    <text x="846" y="80" fill="#ffffffcc" font-size="26" text-anchor="middle">&#215;</text>
+
+    <!-- Cuerpo -->
+    <rect x="500" y="111" width="372" height="372" fill="#f6f3f1"/>
+
+    <!-- Burbuja bot (saludo) -->
+    <rect x="516" y="128" width="270" height="78" rx="14" fill="#ffffff" stroke="#e9e6e4"/>
+    <text x="530" y="152" fill="#0d0d0d" font-size="13">¡Hola! Soy Roji, el asistente del</text>
+    <text x="530" y="170" fill="#0d0d0d" font-size="13">Club Atlético Antoniano. 🔴⚪</text>
+    <text x="530" y="190" fill="#0d0d0d" font-size="13">¿Quieres hacerte abonado o</text>
+    <text x="530" y="200" fill="#0d0d0d" font-size="13" opacity="0">x</text>
+
+    <!-- Burbuja usuario -->
+    <rect x="606" y="220" width="250" height="34" rx="14" fill="#c8102e"/>
+    <text x="836" y="242" fill="#ffffff" font-size="13" text-anchor="end">Quiero hacerme abonado</text>
+
+    <!-- Burbuja bot (respuesta con enlace) -->
+    <rect x="516" y="268" width="300" height="120" rx="14" fill="#ffffff" stroke="#e9e6e4"/>
+    <text x="530" y="292" fill="#0d0d0d" font-size="13">¡Genial que quieras unirte a la</text>
+    <text x="530" y="310" fill="#0d0d0d" font-size="13">grada rojiblanca! 🔴⚪ Puedes</text>
+    <text x="530" y="328" fill="#0d0d0d" font-size="13">hacerte abonado aquí:</text>
+    <text x="530" y="348" fill="#c8102e" font-size="13" font-weight="700" text-decoration="underline">antoniano.compralaentrada.com</text>
+    <text x="530" y="372" fill="#0d0d0d" font-size="13">¿Seguimos por WhatsApp?</text>
+
+    <!-- Chips sugerencias -->
+    <rect x="516" y="404" width="150" height="30" rx="15" fill="#ffffff" stroke="#c8102e"/>
+    <text x="591" y="423" fill="#c8102e" font-size="12" font-weight="700" text-anchor="middle">Comprar entradas</text>
+    <rect x="676" y="404" width="120" height="30" rx="15" fill="#ffffff" stroke="#c8102e"/>
+    <text x="736" y="423" fill="#c8102e" font-size="12" font-weight="700" text-anchor="middle">La cantera</text>
+
+    <!-- Barra WhatsApp -->
+    <rect x="500" y="447" width="372" height="38" fill="#25d366"/>
+    <circle cx="640" cy="466" r="9" fill="#ffffff"/>
+    <path d="M636 470 a5 5 0 1 1 5 2 l3 1 -1 -3 a5 5 0 0 1 -7 0z" fill="#25d366"/>
+    <text x="660" y="471" fill="#ffffff" font-size="13" font-weight="700">Seguir por WhatsApp</text>
+
+    <!-- Input -->
+    <rect x="500" y="485" width="372" height="58" fill="#ffffff"/>
+    <rect x="514" y="498" width="300" height="32" rx="16" fill="#ffffff" stroke="#e9e6e4"/>
+    <text x="528" y="518" fill="#8c8c8c" font-size="13">Escribe tu mensaje…</text>
+    <circle cx="844" cy="514" r="20" fill="#c8102e"/>
+    <path d="M836 514 l16 -6 -16 -6 v4 l9 2 -9 2 z" fill="#ffffff"/>
+
+    <rect x="500" y="40" width="372" height="560" rx="16" fill="none" stroke="#e9e6e4"/>
+  </g>
+
+  <!-- Botón flotante (estado cerrado, esquina) -->
+  <g filter="url(#shadow)">
+    <rect x="690" y="612" width="20" height="20" opacity="0"/>
+  </g>
+</svg>
