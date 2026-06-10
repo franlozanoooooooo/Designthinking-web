@@ -4,39 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Club Atlético Antoniano · Lebrija</title>
-<meta name="description" content="Web oficial del Club Atlético Antoniano (Lebrija). Abónate a hacer Historia.">
+<meta name="description" content="Web oficial del Club Atlético Antoniano (Lebrija). Noticias, primer equipo, cantera, clasificación y entradas. Abónate a hacer Historia.">
+<link rel="icon" href="assets/escudo.svg">
 <link rel="stylesheet" href="assets/styles.css">
-<style>
-  .hero {
-    position: relative; min-height: 88vh; display: flex; align-items: flex-end; color: #fff;
-    background:
-      linear-gradient(180deg, rgba(13,13,13,.2) 0%, rgba(143,11,32,.5) 55%, rgba(13,13,13,.94) 100%),
-      url('assets/encabezado.jpg') center 28% / cover no-repeat,
-      linear-gradient(135deg, var(--rojo-osc), var(--rojo) 60%, var(--negro));
-  }
-  .hero::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, transparent 0 60px, rgba(255,255,255,.025) 60px 120px); }
-  .hero-content { position: relative; z-index: 2; padding: 0 0 66px; }
-  .hero .kicker { display: inline-flex; gap: 10px; background: var(--rojo); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 14px; border-radius: 3px; margin-bottom: 22px; }
-  .hero h1 { font-size: clamp(3rem, 8.5vw, 6.4rem); max-width: 13ch; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
-  .hero h1 em { color: var(--rojo-claro); font-style: normal; }
-  .hero .lema { margin-top: 16px; font-size: clamp(1rem, 2.4vw, 1.35rem); font-weight: 600; max-width: 42ch; color: rgba(255,255,255,.92); }
-  .hero .cta-row { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .quick { padding: 64px 0; }
-</style>
 </head>
 <body>
 
-<!--#NAV-->
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="hide-sm">Club Atlético Antoniano · Lebrija (Sevilla) · Desde 1934</span>
+    <span class="social">
+      <a href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="X">X</a>
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html" aria-label="Club Atlético Antoniano">
-      <svg class="crest" viewBox="0 0 120 142" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Escudo">
-        <path d="M60 4 C40 4 18 8 8 12 C8 60 14 108 60 138 C106 108 112 60 112 12 C102 8 80 4 60 4 Z" fill="#fff" stroke="#c8102e" stroke-width="6"/>
-        <path d="M28 30 L28 70 M28 30 L70 30 M28 48 L58 48" stroke="#c8102e" stroke-width="7" fill="none" stroke-linecap="square"/>
-        <circle cx="74" cy="58" r="22" fill="#7a1320"/>
-        <path d="M74 40 l6 9 -6 7 -6 -7 z M58 56 l9 -3 4 8 -7 6 -8 -5 z M90 56 l-9 -3 -4 8 7 6 8 -5 z M64 76 l4 -8 12 0 4 8 -10 5 z" fill="#fff" opacity=".92"/>
-        <text x="60" y="104" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" fill="#c8102e" letter-spacing="1">ANTONIANO</text>
-      </svg>
+      <img class="crest" src="assets/escudo-blanco.svg" alt="Escudo Antoniano">
       <span class="name"><b>C.A. ANTONIANO</b><span>Lebrija · 1934</span></span>
     </a>
     <nav class="links" id="menu">
@@ -45,6 +35,7 @@
       <a href="equipo.html">Primer Equipo</a>
       <a href="cantera.html">Cantera</a>
       <a href="noticias.html">Noticias</a>
+      <a href="clasificacion.html">Clasificación</a>
       <a href="contacto.html">Contacto</a>
       <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
     </nav>
@@ -66,25 +57,69 @@
 </section>
 <div class="stripe"></div>
 
-<!-- ACCESOS DIRECTOS -->
-<section class="quick">
+<!-- NOTICIA DESTACADA -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="tag">Actualidad</span><h2>Lo último del club</h2></div>
+      <a class="link" href="noticias.html">Todas las noticias →</a>
+    </div>
+
+    <a class="news-feature" href="noticia-antonio-calle.html" style="text-decoration:none">
+      <div class="media" style="background-image:url('assets/antonio-calle.jpg')">
+        <img class="crest-wm" src="assets/escudo-blanco.svg" alt="">
+      </div>
+      <div class="nf-body">
+        <span class="badge">Primer Equipo</span>
+        <h3>Antonio Calle, nuevo entrenador para la temporada 26/27</h3>
+        <p>El técnico llega para dirigir al primer equipo rojiblanco con un proyecto ilusionante. «Bienvenido» al banquillo del Antoniano.</p>
+        <span class="more" style="color:var(--rojo);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:.82rem">Leer noticia →</span>
+      </div>
+    </a>
+
+    <div class="news-grid" style="margin-top:24px">
+      <a class="news-card" href="noticias.html">
+        <div class="media" style="background-image:url('assets/aficion.jpg')"><img class="crest-wm" src="assets/escudo-blanco.svg" alt=""></div>
+        <div class="nc-body"><span class="cat">Afición</span><h3>Campaña de abonados 26/27</h3><p>Llena la grada toda la temporada y empuja al equipo en cada jornada.</p><span class="more">Leer →</span></div>
+      </a>
+      <a class="news-card" href="noticias.html">
+        <div class="media" style="background-image:url('assets/equipo.jpg')"><img class="crest-wm" src="assets/escudo-blanco.svg" alt=""></div>
+        <div class="nc-body"><span class="cat">Primer Equipo</span><h3>Arranca la pretemporada</h3><p>El equipo comienza la preparación con la mirada puesta en el primer partido.</p><span class="more">Leer →</span></div>
+      </a>
+      <a class="news-card" href="cantera.html">
+        <div class="media" style="background-image:url('assets/cantera.jpg')"><img class="crest-wm" src="assets/escudo-blanco.svg" alt=""></div>
+        <div class="nc-body"><span class="cat">Cantera</span><h3>El fútbol base, en marcha</h3><p>Los equipos de la cantera rojiblanca preparan una nueva temporada.</p><span class="more">Leer →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CLASIFICACIÓN -->
+<section class="clasi">
+  <div class="wrap">
+    <div class="clasi-box">
+      <div class="ch">
+        <h3>Clasificación</h3>
+        <span>Temporada en curso</span>
+      </div>
+      <div class="cb">
+        <p>Consulta la clasificación actualizada, resultados y calendario del Club Atlético Antoniano en su competición.</p>
+        <div class="clasi-actions">
+          <a class="btn" href="https://www.lapreferente.com/" target="_blank" rel="noopener">Ver en LaPreferente</a>
+          <a class="btn dark" href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Antoniano" target="_blank" rel="noopener">Ver en Wikipedia</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESOS -->
+<section style="padding-top:0">
   <div class="wrap">
     <div class="tiles">
-      <a class="tile" href="equipo.html">
-        <h3>Primer Equipo</h3>
-        <p>Plantilla, cuerpo técnico y el Municipal como fortaleza rojiblanca.</p>
-        <span class="more">Ver equipo →</span>
-      </a>
-      <a class="tile" href="cantera.html">
-        <h3>Cantera</h3>
-        <p>El fútbol base del Antoniano, de prebenjamín a juvenil.</p>
-        <span class="more">Ver cantera →</span>
-      </a>
-      <a class="tile" href="noticias.html">
-        <h3>Noticias</h3>
-        <p>La actualidad del club, partido a partido.</p>
-        <span class="more">Ver noticias →</span>
-      </a>
+      <a class="tile" href="equipo.html"><h3>Primer Equipo</h3><p>Plantilla, cuerpo técnico y el Municipal como fortaleza rojiblanca.</p><span class="more">Ver equipo →</span></a>
+      <a class="tile" href="cantera.html"><h3>Cantera</h3><p>El fútbol base del Antoniano, de prebenjamín a juvenil.</p><span class="more">Ver cantera →</span></a>
+      <a class="tile" href="club.html"><h3>El Club</h3><p>Historia, escudo y sentimiento rojiblanco de Lebrija.</p><span class="more">Conócenos →</span></a>
     </div>
   </div>
 </section>
@@ -98,16 +133,25 @@
   </div>
 </section>
 
-<!--#FOOTER-->
+<!-- PATROCINADORES -->
+<div class="sponsors">
+  <div class="wrap">
+    <div class="t">Con el apoyo de</div>
+    <div class="sponsor-row">
+      <span class="sponsor">Patrocinador</span>
+      <span class="sponsor">Patrocinador</span>
+      <span class="sponsor">Ayto. Lebrija</span>
+      <span class="sponsor">Patrocinador</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
       <div class="brand">
-        <svg class="crest" viewBox="0 0 120 142" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M60 4 C40 4 18 8 8 12 C8 60 14 108 60 138 C106 108 112 60 112 12 C102 8 80 4 60 4 Z" fill="#fff" stroke="#c8102e" stroke-width="6"/>
-          <path d="M28 30 L28 70 M28 30 L70 30 M28 48 L58 48" stroke="#c8102e" stroke-width="7" fill="none" stroke-linecap="square"/>
-          <circle cx="74" cy="58" r="22" fill="#7a1320"/>
-        </svg>
+        <img class="crest" src="assets/escudo-blanco.svg" alt="Escudo Antoniano" style="width:38px;height:46px">
         <span class="name"><b>Club Atlético Antoniano</b><span>Convertir en rutina lo extraordinario</span></span>
       </div>
       <nav class="foot-links">
@@ -115,6 +159,7 @@
         <a href="equipo.html">Primer Equipo</a>
         <a href="cantera.html">Cantera</a>
         <a href="noticias.html">Noticias</a>
+        <a href="clasificacion.html">Clasificación</a>
         <a href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
         <a href="contacto.html">Contacto</a>
       </nav>

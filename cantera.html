@@ -5,20 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cantera · Club Atlético Antoniano</title>
 <meta name="description" content="El fútbol base del Antoniano: el futuro rojiblanco de Lebrija.">
+<link rel="icon" href="assets/escudo.svg">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
+<div class="topbar">
+  <div class="wrap">
+    <span class="hide-sm">Club Atlético Antoniano · Lebrija (Sevilla) · Desde 1934</span>
+    <span class="social">
+      <a href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="X">X</a>
+    </span>
+  </div>
+</div>
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="index.html" aria-label="Club Atlético Antoniano">
-      <svg class="crest" viewBox="0 0 120 142" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Escudo">
-        <path d="M60 4 C40 4 18 8 8 12 C8 60 14 108 60 138 C106 108 112 60 112 12 C102 8 80 4 60 4 Z" fill="#fff" stroke="#c8102e" stroke-width="6"/>
-        <path d="M28 30 L28 70 M28 30 L70 30 M28 48 L58 48" stroke="#c8102e" stroke-width="7" fill="none" stroke-linecap="square"/>
-        <circle cx="74" cy="58" r="22" fill="#7a1320"/>
-        <path d="M74 40 l6 9 -6 7 -6 -7 z M58 56 l9 -3 4 8 -7 6 -8 -5 z M90 56 l-9 -3 -4 8 7 6 8 -5 z M64 76 l4 -8 12 0 4 8 -10 5 z" fill="#fff" opacity=".92"/>
-        <text x="60" y="104" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" fill="#c8102e" letter-spacing="1">ANTONIANO</text>
-      </svg>
+      <img class="crest" src="assets/escudo-blanco.svg" alt="Escudo Antoniano">
       <span class="name"><b>C.A. ANTONIANO</b><span>Lebrija · 1934</span></span>
     </a>
     <nav class="links" id="menu">
@@ -27,6 +32,7 @@
       <a href="equipo.html">Primer Equipo</a>
       <a href="cantera.html" class="active">Cantera</a>
       <a href="noticias.html">Noticias</a>
+      <a href="clasificacion.html">Clasificación</a>
       <a href="contacto.html">Contacto</a>
       <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
     </nav>
@@ -45,10 +51,9 @@
 
 <section>
   <div class="wrap">
-    <div class="prose" style="margin-bottom:40px">
-      <span class="kicker">Fútbol base</span>
-      <h2>El futuro rojiblanco</h2>
-      <p class="lead">Formamos a los antonianos del mañana, dentro y fuera del campo, desde prebenjamín hasta juvenil.</p>
+    <div class="photo-card" style="margin-bottom:40px">
+      <div class="media" style="background-image:url('assets/cantera.jpg');height:360px"><img class="crest-wm" src="assets/escudo-blanco.svg" alt=""></div>
+      <div class="pc-body"><h3>El futuro rojiblanco</h3><p>Formamos a los antonianos del mañana, dentro y fuera del campo, desde prebenjamín hasta juvenil.</p></div>
     </div>
     <div class="tiles">
       <div class="tile"><h3>Todas las categorías</h3><p>Una estructura de fútbol base que acompaña al jugador en cada etapa de su crecimiento.</p></div>
@@ -70,11 +75,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="brand">
-        <svg class="crest" viewBox="0 0 120 142" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M60 4 C40 4 18 8 8 12 C8 60 14 108 60 138 C106 108 112 60 112 12 C102 8 80 4 60 4 Z" fill="#fff" stroke="#c8102e" stroke-width="6"/>
-          <path d="M28 30 L28 70 M28 30 L70 30 M28 48 L58 48" stroke="#c8102e" stroke-width="7" fill="none" stroke-linecap="square"/>
-          <circle cx="74" cy="58" r="22" fill="#7a1320"/>
-        </svg>
+        <img class="crest" src="assets/escudo-blanco.svg" alt="Escudo Antoniano" style="width:38px;height:46px">
         <span class="name"><b>Club Atlético Antoniano</b><span>Convertir en rutina lo extraordinario</span></span>
       </div>
       <nav class="foot-links">
@@ -82,6 +83,7 @@
         <a href="equipo.html">Primer Equipo</a>
         <a href="cantera.html">Cantera</a>
         <a href="noticias.html">Noticias</a>
+        <a href="clasificacion.html">Clasificación</a>
         <a href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Entradas</a>
         <a href="contacto.html">Contacto</a>
       </nav>

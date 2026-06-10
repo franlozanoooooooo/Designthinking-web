@@ -1,0 +1,36 @@
+<svg viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Escudo del Club Atlético Antoniano (Lebrija)">
+  <!-- Marco en F / banderola -->
+  <g fill="none" stroke="#c8102e" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 40 H176 L150 70" stroke-width="9"/>
+    <path d="M50 40 V286 Q50 304 70 304 H104 L88 320" stroke-width="9"/>
+    <path d="M50 132 H132 L112 158" stroke-width="9"/>
+    <path d="M66 56 H150" stroke-width="4" opacity=".9"/>
+    <path d="M66 56 V276" stroke-width="4" opacity=".9"/>
+    <path d="M66 146 H112" stroke-width="4" opacity=".9"/>
+  </g>
+  <!-- Balón clásico -->
+  <g>
+    <circle cx="168" cy="150" r="48" fill="#7a1320"/>
+    <g fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round">
+      <circle cx="168" cy="150" r="48" stroke-width="3"/>
+      <polygon points="168,138 179.4,146.3 175,159.7 160.9,159.7 156.6,146.3" fill="#ffffff" fill-opacity=".15"/>
+      <path d="M168 138 L168 102"/>
+      <path d="M179.4 146.3 L213.6 135.2"/>
+      <path d="M175 159.7 L196.2 188.8"/>
+      <path d="M160.9 159.7 L139.8 188.8"/>
+      <path d="M156.6 146.3 L122.4 135.2"/>
+    </g>
+  </g>
+  <!-- LEBRIJA -->
+  <text x="150" y="230" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="29" letter-spacing="1" fill="#1a1a1a">LEBRIJA</text>
+  <!-- Flores -->
+  <g>
+    <path d="M150 296 q-6 -26 -16 -40 M150 296 q10 -24 26 -36" fill="none" stroke="#2f9e44" stroke-width="4" stroke-linecap="round"/>
+    <g fill="#c8102e">
+      <path d="M134 252 l5 -12 5 12 12 -3 -7 11 9 9 -13 1 -1 13 -8 -10 -11 6 4 -13 -12 -5 11 -6z"/>
+      <path d="M174 250 l5 -12 5 12 12 -3 -7 11 9 9 -13 1 -1 13 -8 -10 -11 6 4 -13 -12 -5 11 -6z"/>
+    </g>
+    <circle cx="139" cy="258" r="3.5" fill="#fff"/>
+    <circle cx="179" cy="256" r="3.5" fill="#fff"/>
+  </g>
+</svg>
