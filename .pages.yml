@@ -1,0 +1,47 @@
+media:
+  - name: imagenes
+    label: Imágenes y fotos
+    input: assets
+    output: assets
+    extensions: [jpg, jpeg, png, webp, svg]
+
+content:
+  - name: inicio
+    label: Inicio y ajustes
+    type: file
+    path: content/site.json
+    fields:
+      - { name: hero_titulo, label: "Título del encabezado", type: string }
+      - { name: hero_destacado, label: "Palabra destacada (en rojo)", type: string }
+      - { name: lema, label: "Lema", type: string }
+      - { name: encabezado, label: "Foto del encabezado (grada)", type: image }
+      - { name: escudo, label: "Escudo (color)", type: image }
+      - { name: escudo_blanco, label: "Escudo (blanco, para fondos oscuros)", type: image }
+      - { name: url_entradas, label: "URL de entradas/abonos", type: string }
+      - { name: url_clasificacion, label: "URL clasificación (LaPreferente)", type: string }
+      - { name: url_wikipedia, label: "URL Wikipedia del club", type: string }
+      - name: noticia_destacada
+        label: "Noticia destacada (portada)"
+        type: object
+        fields:
+          - { name: categoria, label: Categoría, type: string }
+          - { name: titulo, label: Título, type: string }
+          - { name: resumen, label: Resumen, type: text }
+          - { name: imagen, label: Imagen, type: image }
+          - { name: enlace, label: "Enlace (página de la noticia)", type: string }
+
+  - name: noticias
+    label: Noticias
+    type: collection
+    path: content/noticias
+    filename: "{fields.slug}.md"
+    view:
+      fields: [titulo, categoria, fecha]
+    fields:
+      - { name: titulo, label: Título, type: string }
+      - { name: slug, label: "Slug (URL, sin espacios)", type: string }
+      - { name: categoria, label: Categoría, type: string }
+      - { name: fecha, label: Fecha, type: date }
+      - { name: imagen, label: Imagen, type: image }
+      - { name: resumen, label: Resumen, type: text }
+      - { name: cuerpo, label: Cuerpo de la noticia, type: rich-text }
