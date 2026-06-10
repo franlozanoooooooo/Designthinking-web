@@ -1,18 +1,23 @@
-# Imágenes de la web
+# Imágenes de la web — qué subir aquí
 
-## Encabezado (hero)
-Coloca aquí la **foto de la grada** (el tifo rojiblanco "FK" con la pancarta
-"Convertir en rutina lo extraordinario") con este nombre exacto:
+La web ya funciona sin fotos (los huecos muestran un bloque rojo de marca con
+el escudo). En cuanto subas cada archivo con **este nombre exacto** en la
+carpeta `assets/`, la foto aparece automáticamente en su sitio.
 
-```
-assets/encabezado.jpg
-```
+| Archivo (nombre exacto)   | Dónde aparece                                  |
+|---------------------------|------------------------------------------------|
+| `encabezado.jpg`          | Encabezado/hero de la portada (foto de la grada)|
+| `antonio-calle.jpg`       | Noticia destacada del nuevo entrenador          |
+| `equipo.jpg`              | Página Primer Equipo + tarjeta de noticias      |
+| `aficion.jpg`             | Página El Club + tarjeta de noticias            |
+| `cantera.jpg`             | Página Cantera + tarjeta de noticias            |
 
-En cuanto subas ese archivo, aparecerá automáticamente como fondo del
-encabezado de `index.html`. Mientras no exista, el encabezado muestra un
-degradado rojo de respaldo para que la web se vea bien igualmente.
+### Subir desde GitHub (fácil)
+1. Entra en: https://github.com/franlozanoooooooo/Designthinking-web/upload/main/assets
+2. Arrastra las fotos (renómbralas antes con los nombres de la tabla).
+3. Pulsa **Commit changes**.
 
 ## Escudo
-El escudo del club está integrado directamente en `index.html` como SVG
-(no necesita archivo). Si prefieres usar el escudo oficial en imagen,
-súbelo como `assets/escudo.png` y avísame para enlazarlo.
+El escudo está hecho en **SVG** (`escudo.svg` a color y `escudo-blanco.svg` en
+blanco), así que se ve siempre. Si quieres usar el escudo oficial en imagen,
+sube `escudo.png` y avísame para enlazarlo.
