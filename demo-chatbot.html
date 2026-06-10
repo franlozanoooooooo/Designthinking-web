@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEMO · Chatbot Roji · Club Atlético Antoniano</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/chatbot.css">
+<style>
+  .demo-hero {
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; color: #fff; padding: 40px 24px;
+    background: linear-gradient(180deg, rgba(13,13,13,.3), rgba(143,11,32,.6) 60%, rgba(13,13,13,.96)),
+      linear-gradient(135deg, var(--rojo-osc), var(--rojo) 60%, var(--negro));
+  }
+  .demo-badge { display:inline-block; background: var(--rojo); color:#fff; font-weight:800; letter-spacing:2px; text-transform:uppercase; font-size:.7rem; padding:6px 14px; border-radius:4px; margin-bottom:20px; }
+  .demo-hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); max-width: 16ch; }
+  .demo-hero p { margin-top: 16px; max-width: 48ch; color: rgba(255,255,255,.85); font-size: 1.1rem; }
+  .demo-hint { margin-top: 28px; font-size: .95rem; background: rgba(255,255,255,.1); padding: 12px 18px; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<section class="demo-hero">
+  <span class="demo-badge">★ Demo · sin conexión real</span>
+  <h1>Así se vería el <em style="color:var(--rojo-claro);font-style:normal">chatbot</em> en la web</h1>
+  <p>Esta es una demostración con respuestas de ejemplo (no usa la IA real). Pulsa el botón rojo de abajo a la derecha para abrir el chat y prueba a escribir.</p>
+  <div class="demo-hint">👉 Botón <b>"¿Te ayudo?"</b> abajo a la derecha</div>
+</section>
+
+<script>
+// ====== SIMULADOR: intercepta /api/chat y devuelve respuestas de ejemplo ======
+(function () {
+  var respuestas = [
+    { re: /(abon|socio|hacerme)/i, txt: "¡Genial que quieras unirte a la grada rojiblanca! 🔴⚪ Puedes hacerte abonado en la plataforma oficial del club: https://antoniano.compralaentrada.com/ \n¿Quieres que te ayude con algo más o prefieres que sigamos por WhatsApp?" },
+    { re: /(entrada|partido|comprar|ticket)/i, txt: "Las entradas para los partidos en el Municipal se compran aquí: https://antoniano.compralaentrada.com/ \nAsegura tu sitio y anima al equipo. ¿Te ayudo con algo más?" },
+    { re: /(equipo|plantilla|jugador|primer)/i, txt: "El primer equipo lo deja todo cada jornada en el Estadio Municipal de Lebrija. Puedes ver más en la sección 'Primer Equipo'. ¿Quieres tu entrada para el próximo partido?" },
+    { re: /(cantera|base|niñ|juvenil|benjam)/i, txt: "Nuestra cantera forma a los antonianos del mañana, desde prebenjamín hasta juvenil. Para temas de inscripciones lo mejor es que sigamos por WhatsApp y te atendemos personalmente. 🙌" },
+    { re: /(precio|cuánto|cuesta|coste)/i, txt: "Los precios exactos están en la plataforma oficial de entradas: https://antoniano.compralaentrada.com/ \nSi quieres, te lo resolvemos al detalle por WhatsApp." },
+    { re: /(hola|buenas|hey)/i, txt: "¡Hola! ¿Quieres hacerte abonado, conseguir entradas o saber algo del Antoniano? #VamosAntoniano" },
+  ];
+  var pordefecto = "Te cuento: lo de abonos y entradas se gestiona en la plataforma oficial https://antoniano.compralaentrada.com/ . Para algo más concreto podemos seguir por WhatsApp. ¿Qué necesitas?";
+
+  window.fetch = function (url, opts) {
+    if (typeof url === "string" && url.indexOf("/api/chat") !== -1) {
+      var body = JSON.parse(opts.body);
+      var ultimo = body.messages[body.messages.length - 1].content;
+      var r = pordefecto;
+      for (var i = 0; i < respuestas.length; i++) {
+        if (respuestas[i].re.test(ultimo)) { r = respuestas[i].txt; break; }
+      }
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          resolve({ ok: true, json: function () { return Promise.resolve({ reply: r }); } });
+        }, 700); // simula el tiempo de respuesta de la IA
+      });
+    }
+    return Promise.reject(new Error("solo demo"));
+  };
+})();
+</script>
+<script src="assets/chatbot.js"></script>
+<script>
+  // Abre el chat automáticamente para la demo
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      var b = document.getElementById("caa-chat-launcher");
+      if (b) b.click();
+    }, 400);
+  });
+</script>
+</body>
+</html>

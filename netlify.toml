@@ -1,0 +1,13 @@
+# Configuración de Netlify para el Club Atlético Antoniano
+# La web es estática (se publica tal cual) y el chatbot corre como
+# función serverless en netlify/functions.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# El widget llama a /api/chat y Netlify lo redirige a la función.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
