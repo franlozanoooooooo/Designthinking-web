@@ -1,0 +1,18 @@
+{
+  "hero_titulo": "Abónate a hacer",
+  "hero_destacado": "Historia",
+  "lema": "Convertir en rutina lo extraordinario.",
+  "encabezado": "assets/encabezado.jpg",
+  "escudo": "assets/escudo.svg",
+  "escudo_blanco": "assets/escudo-blanco.svg",
+  "url_entradas": "https://antoniano.compralaentrada.com/",
+  "url_clasificacion": "https://www.lapreferente.com/",
+  "url_wikipedia": "https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Antoniano",
+  "noticia_destacada": {
+    "categoria": "Primer Equipo",
+    "titulo": "Antonio Calle, nuevo entrenador para la temporada 26/27",
+    "resumen": "El técnico llega para dirigir al primer equipo rojiblanco con un proyecto ilusionante. «Bienvenido» al banquillo del Antoniano.",
+    "imagen": "assets/antonio-calle.jpg",
+    "enlace": "noticia-antonio-calle.html"
+  }
+}

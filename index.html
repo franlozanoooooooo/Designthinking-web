@@ -47,10 +47,10 @@
 <section class="hero">
   <div class="wrap hero-content">
     <span class="kicker">★ Lebrija · Sevilla</span>
-    <h1>Abónate a hacer <em>Historia</em></h1>
-    <p class="lema">Convertir en rutina lo extraordinario.</p>
+    <h1><span data-cms="hero_titulo">Abónate a hacer</span> <em data-cms="hero_destacado">Historia</em></h1>
+    <p class="lema" data-cms="lema">Convertir en rutina lo extraordinario.</p>
     <div class="cta-row">
-      <a class="btn" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Hazte abonado</a>
+      <a class="btn" data-cms-href="url_entradas" href="https://antoniano.compralaentrada.com/" target="_blank" rel="noopener">Hazte abonado</a>
       <a class="btn ghost" href="club.html">El club</a>
     </div>
   </div>
@@ -65,14 +65,14 @@
       <a class="link" href="noticias.html">Todas las noticias →</a>
     </div>
 
-    <a class="news-feature" href="noticia-antonio-calle.html" style="text-decoration:none">
-      <div class="media" style="background-image:url('assets/antonio-calle.jpg')">
+    <a class="news-feature" data-cms-href="noticia_destacada.enlace" href="noticia-antonio-calle.html" style="text-decoration:none">
+      <div class="media" data-cms-bg="noticia_destacada.imagen" style="background-image:url('assets/antonio-calle.jpg')">
         <img class="crest-wm" src="assets/escudo-blanco.svg" alt="">
       </div>
       <div class="nf-body">
-        <span class="badge">Primer Equipo</span>
-        <h3>Antonio Calle, nuevo entrenador para la temporada 26/27</h3>
-        <p>El técnico llega para dirigir al primer equipo rojiblanco con un proyecto ilusionante. «Bienvenido» al banquillo del Antoniano.</p>
+        <span class="badge" data-cms="noticia_destacada.categoria">Primer Equipo</span>
+        <h3 data-cms="noticia_destacada.titulo">Antonio Calle, nuevo entrenador para la temporada 26/27</h3>
+        <p data-cms="noticia_destacada.resumen">El técnico llega para dirigir al primer equipo rojiblanco con un proyecto ilusionante. «Bienvenido» al banquillo del Antoniano.</p>
         <span class="more" style="color:var(--rojo);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:.82rem">Leer noticia →</span>
       </div>
     </a>
@@ -105,8 +105,8 @@
       <div class="cb">
         <p>Consulta la clasificación actualizada, resultados y calendario del Club Atlético Antoniano en su competición.</p>
         <div class="clasi-actions">
-          <a class="btn" href="https://www.lapreferente.com/" target="_blank" rel="noopener">Ver en LaPreferente</a>
-          <a class="btn dark" href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Antoniano" target="_blank" rel="noopener">Ver en Wikipedia</a>
+          <a class="btn" data-cms-href="url_clasificacion" href="https://www.lapreferente.com/" target="_blank" rel="noopener">Ver en LaPreferente</a>
+          <a class="btn dark" data-cms-href="url_wikipedia" href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Antoniano" target="_blank" rel="noopener">Ver en Wikipedia</a>
         </div>
       </div>
     </div>
@@ -172,5 +172,6 @@
 </footer>
 
 <script src="assets/main.js"></script>
+<script src="assets/cms.js"></script>
 </body>
 </html>
